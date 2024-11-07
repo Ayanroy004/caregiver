@@ -1,0 +1,6 @@
+white - #F4F4F4
+primary - #A02334
+dropdown_blackysheed - #333
+online - green
+body-color - #1A3636
+shed color - #32443D

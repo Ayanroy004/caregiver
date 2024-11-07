@@ -1,0 +1,351 @@
+/* ------------------------Global CSS Start---------------------- */
+:root{
+    --primaryColour : #10BFD9;
+    --secondaryColour : #A02334;
+    --bgColour : #1A3636F7;
+    --bgColour2 : #1A3636;
+    --bgForm : #32443D; 
+    --headerBlack : #181717;
+    --orange : #F04D23;
+    --grey : #4A5660;
+    --inputBoxColour : #D9D9D9;
+    --red : #FC2F2F;
+    --green : #0FBE0F;
+}
+*{padding: 0;margin: 0;box-sizing: border-box;}
+body{font-family: "Esteban", serif;font-weight: 400;background-color: var(--bgColour)}
+/* button */
+button{background-color: var(--secondaryColour);color: white;font-size: 18px;line-height: 21px;font-weight: 400;font-family: "Chakra Petch", sans-serif;border: none; min-width: 120px;padding: 11px 26px; border-radius: 28px;cursor: pointer;transition: all 0.4s;}
+button:hover{background-color: #a02334c3;color: #eeeeee;}
+
+
+/* section gaps */
+.sec-gap{padding-block: 70px;}
+
+/* input box */
+input, textarea{padding-inline: 19px;padding-block: 26px; width: 100%; color: #FFFFFF; background-color:#32443D; border: none; border-radius: 12px;font-size: 16px;resize: none;}
+input::placeholder, textarea::placeholder{color: #696767;}
+input:focus-visible{box-shadow: none;box-shadow: 1px 0px 3px 2px var(--primaryColour); outline: none;color: #FFFFFF;}
+input:-webkit-autofill,textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--bgForm) inset; 
+  -webkit-text-fill-color: #FFFFFF;
+}
+
+/* img,svg */
+
+img{height: 100%;width: 100%;}
+svg{height: 100%;width: 100%;}
+a{text-decoration: none;color: #FFFFFF;}
+ul li {list-style: none;}
+
+/* grid structure */
+
+.row {display: flex;flex-wrap: wrap;margin-right: -12px;margin-left: -12px;}
+.col {flex: 1;padding-right: 12px;padding-left: 12px;}
+.col-12{width: 100%;padding-right: 12px;padding-left: 12px;}
+.col-25{width: 25%;padding-right: 12px;padding-left: 12px;}
+.col-30{width: 30%;padding-right: 12px;padding-left: 12px;}
+.col-40{width: 40%;padding-right: 12px;padding-left: 12px;}
+.col-50{width: 50%;padding-right: 12px;padding-left: 12px;}
+
+/* Divider */
+
+.divider{border-top: 1px solid var(--inputBoxColour);}
+
+/* Slider bar style */
+::-webkit-scrollbar {width: 12px;}
+
+::-webkit-scrollbar-track {background: #d8d8d8;border-radius: 10px;}
+
+::-webkit-scrollbar-thumb {background-color: var(--secondaryColour);border-radius: 10px;border: 1px solid #f1f1f1;}
+
+::-webkit-scrollbar-thumb:hover {background-color: #82212e;}
+
+
+/* Container */
+.custom-container {
+    width: 100%;
+    max-width: 1320px; /* Maximum width at larger screens */
+    margin: 0 auto; /* Center the container */
+    padding: 0 12px; /* Add some padding on the sides */
+  }
+
+  @media (max-width: 1200px) {
+    .custom-container {
+      max-width: 960px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .custom-container {
+      max-width: 720px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .custom-container {
+      max-width: 100%;
+    }
+  }
+
+/* ------------------------------Global CSS End------------------- */
+
+/* -------------------------Typography Start------------------------ */
+
+
+h1{font-family: "Chakra Petch", sans-serif;font-weight: 700;font-size: 46px;line-height: 55px;text-shadow: 
+    /* Stroke effect */
+    -2px -2px 0px white, 
+    2px -2px 0px white,
+    -2px 2px 0px white,
+    2px 2px 0px white,
+    /* Drop shadow effect */
+    7px 1px 2px rgba(0, 0, 0, 1);text-align: center;color: var(--bgColour2);}
+h2{font-family: "Cambay", sans-serif;font-weight: 600;font-size: 36px;line-height: 43px;color: #FFFFFF;}
+h3{font-family: "Cambay", sans-serif;font-weight: 600;font-size: 28px;line-height: 33px;color: #000000;}
+
+h4{font-family: "Chakra Petch", sans-serif;font-weight: 600;font-size: 24px;line-height: 29px;color: #000000;}
+h5{font-family: "Chakra Petch", sans-serif;font-weight: 600;font-size: 20px;line-height: 25px;color: #000000;}
+
+p{font-size: 18px;line-height: 27px;color: white;}
+
+/* ---------------------------Typography End------------------ */
+
+/* --------------------------Button Start-------------------- */
+.outline-button{background-color: transparent;border: 2px solid var(--secondaryColour);}
+.outline-button:hover{background-color: var(--secondaryColour);border: 2px solid transparent;color: #eeeeee;}
+.full-button{border-radius: 12px;width: 100%;}
+/* ------------------------Button End------------------------- */
+
+/* ---------------------------Header start-------------------------- */
+header{font-family: "Chakra Petch", sans-serif;font-weight: 400;height: 100px;}
+nav{background-color: var(--headerBlack);display: flex;align-items: center;width: 100%;position: fixed;z-index: 9;padding-block: 5px;}
+header .logo{width: 170px;}
+header .wrapper{display: flex;align-items: center;justify-content: space-between;}
+header .navigation .first-ul{display: flex;gap: 40px;position: relative;align-items: center;}
+header .navigation .first-ul li:hover a{color: var(--primaryColour);}
+header .navigation .first-ul .nav2 p:hover{cursor: pointer;color: var(--primaryColour);}
+header .navigation .first-ul .nav2{display: flex;gap: 5px;}
+header .navigation .first-ul .nav2 .dropdown{width: 10px;height: 5px;}
+header .navigation .first-ul .nav2 .wrap{display: flex;gap: 5px;}
+.effect{transition: all 0.4s;}
+header .navigation .first-ul .menu-toggle{position: absolute;top: 30px;background-color: #FFFFFF;display: flex;flex-direction: column;gap: 5px;padding-block: 5px;border-radius: 8px;opacity: 0;display: none;}
+header .navigation .first-ul .toggle{opacity: 1; transform: translateY(10px);display: inline-block;z-index: 5;}
+header .navigation .first-ul .menu-toggle li{padding: 5px 10px;}
+header .navigation .first-ul .menu-toggle li:hover{background-color: var(--secondaryColour);cursor: pointer;}
+header .navigation .first-ul .menu-toggle li:hover a{color: #FFFFFF}
+header .navigation .first-ul .menu-toggle li a{color: #000000;}
+header .wrapper .log-sign-btn-wrapper{display: flex;gap: 15px;align-items: center;}
+header .wrapper .log-sign-btn-wrapper .user{width: 42px;height: 42px;border-radius: 50%;background-color: #69746D;padding: 10px;}
+.ham-rot{transform: rotate(360deg);}
+.none{display: none;}
+.present{display: inline-block;}
+header .wrapper .hamburger{width: 30px;cursor: pointer;display: none;transition: all 0.4s;}
+
+/* -----------------------------------Header End---------------------------------- */
+
+/* -----------------------------------Footer Start---------------------------------- */
+
+footer{font-family: "Chakra Petch", sans-serif;font-weight: 400;background-color: var(--bgColour2);padding-block: 27px;border-top: 1px solid var(--inputBoxColour);}
+footer .middle{display: flex;}
+footer .left-sec{display: flex;flex-direction: column;gap: 20px;}
+footer .left-sec .logo-wrap{width: 170px;}
+footer .left-sec p{line-height: 23px;font-weight: 400;}
+footer .left-sec .social-media-logo{display: flex;gap: 14px;}
+footer .left-sec .social-media-logo .social{width: 34px;height: 34px;background-color: var(--secondaryColour);padding: 8px;border-radius: 50%;box-shadow: 0px 0px 4px 4px var(--secondaryColour);border: 1px solid #FFFFFF;transition: all 0.4s;}
+footer .left-sec .social-media-logo a:hover .social{cursor: pointer;box-shadow: 0px 0px 4px 4px var(--primaryColour);transform: scale(1.05);}
+
+footer .mid-sec{display: flex;gap: 81px;justify-content: space-evenly;}
+footer .mid-sec ul li:hover a{color: var(--primaryColour);}
+footer .mid-sec .quick-link,footer .mid-sec .services,footer .right-sec .contact-info{display: flex;flex-direction: column;gap: 25px;}
+footer .right-sec .contact-info ul{display: flex;flex-direction: column;gap: 15px;}
+footer .mid-sec .quick-link ul{display: flex;flex-direction: column;gap: 15px;}
+footer .mid-sec h5,footer .right-sec h5{color: #FFFFFF;text-decoration: underline;}
+footer  .mid-sec .services ul{display: flex;flex-direction: column;gap: 15px;}
+footer .right-sec .contact-info ul li{display: flex;gap: 7px;flex: 1;}
+footer .right-sec .contact-info ul li .icon{width: 16px;}
+
+/* ----------------------------------Footer End------------------------------ */
+
+/* -------------------------------Copy rights Start-------------------------- */
+.copy-rights {padding-block:23px ;width: 100%;background-color: var(--secondaryColour);}
+.copy-rights p{text-align: center;}
+
+/* -------------------------------Copy rights End-------------------------- */
+
+/* -------------------------------Hero sec Start-------------------------- */
+
+.hero .img-wrap{height: 657px;}
+/* .hero .img-wrap img{object-fit:cover;} */
+/* -------------------------------Hero sec End-------------------------- */
+
+/* ------------------------------Services Home Start------------------------- */
+
+.services-sec{border-top: 1px solid var(--inputBoxColour);}
+.services-sec .services-wrapper{background-color: var(--bgForm);border-radius: 32px;margin-top: 60px;padding: 56px 50px;}
+.services-sec .services-wrapper h1{font-size: 36px;line-height: 43px; text-align: start;color: var(--bgForm);margin-bottom: 58px;}
+.services-sec .cards{width: 324px;height: 100%; border-radius: 20px;background-color: #FFFFFF;padding: 32px 35px;transition: all 0.4s;}
+.services-sec .services-wrapper .cards h3{text-align: center;margin-top: 18px;}
+.services-sec .services-wrapper .cards .img-wrap{width: 254px;border-radius: 12px;}
+.services-sec .services-wrapper .cards .img-wrap img{border-radius: 12px;}
+.services-sec .services-wrapper .cards-wrapper  {display: flex;flex-wrap: wrap;gap: 96px;justify-content: center;}
+.services-sec .services-wrapper .cards-wrapper a:hover .cards{transform: scale(1.05);}
+
+/* ------------------------------Services Home End------------------------- */
+
+/* -------------------------------Medicine Home Start----------------------- */
+
+.medicine-home .slide{width: 100%;height: 657px;position: relative;overflow: hidden;}
+.medicine-home .slider{position: absolute;transition: all 1s;}
+.medicine-home .prev-btn{position: absolute;z-index: 1;top: 50%;left: 5px; border-radius: 50%;padding: 10px;min-width: 0;background-color: transparent;}
+.medicine-home .next-btn{position: absolute;z-index: 1;top: 50%;right: 0;border-radius: 50%;padding: 10px;min-width: 0;background-color: transparent;}
+
+.medicine-sec .services-wrapper{background-color: var(--bgForm);margin-top: 60px;padding: 56px 50px;}
+.medicine-sec .services-wrapper h1{text-align: start;color: var(--bgForm);margin-bottom: 58px;}
+.medicine-sec .cards{width: 320px; height: 117px; border-radius: 12px;background-color: #FFFFFF;padding: 24px 15px;transition: all 0.4s;display: flex;}
+.medicine-sec .services-wrapper .cards h3{text-align: center;margin-top: 18px;}
+.medicine-sec .services-wrapper .cards .img-wrap{width: 72px;height: 68px; border-radius: 12px;margin-right: 20px;}
+.medicine-sec .services-wrapper .cards-wrapper  {display: flex;flex-wrap: wrap;gap: 50px;justify-content: center;}
+.medicine-sec .services-wrapper .cards-wrapper a:hover .cards{transform: scale(1.05);}
+.medicine-sec .services-wrapper .cards .img-wrap img{border-radius: 12px;}
+
+/* -------------------------------Medicine Home End----------------------- */
+
+/* --------------------------------Elder Care Start---------------------------------- */
+
+.products .products-wrapper{background-color: var(--bgForm);}
+.products .products-wrapper .cards-wrapper{padding-block: 70px;margin-top: 60px;display: flex;flex-wrap: wrap;gap: 70px;}
+.products .products-wrapper .cards-wrapper .cards .img-wrap{width: 308px;}
+.products .products-wrapper .cards-wrapper .cards .img-wrap img{border-radius: 12px;}
+.products .products-wrapper .cards-wrapper .cards{padding: 34px 29px;background-color: #FFFFFF;border-radius: 12px;width: 366px;height: 100%; transition: all 0.4s;}
+
+.products .products-wrapper .cards-wrapper .cards .price h5{color: #CECECE;font-weight: 400;}
+.products .products-wrapper .cards-wrapper .cards .rupees{width: 12px;height: 16px;}
+.products .products-wrapper .cards-wrapper .cards .price{display: flex;align-items: center;margin-block: 5px;}
+.products .products-wrapper .cards-wrapper .cards .price .price-tag{width: 46px;height: 19px;}
+.products .products-wrapper .cards-wrapper .cards .price .wrap{position: relative;}
+.products .products-wrapper .cards-wrapper .cards p{position: absolute;font-size: 8px;top: -7px;left: 5px;}
+.products .products-wrapper .cards-wrapper .cards .price .mrp{display: flex;align-items: center;margin-inline: 7px 14px;gap: 3px;}
+.products .products-wrapper .cards-wrapper .cards .price .mrp h5{text-decoration:line-through;}
+.products .products-wrapper .cards-wrapper .cards .org-price{display: flex;align-items: center;gap: 6px;}
+.products .products-wrapper .cards-wrapper .cards .org-price h5{font-weight: 400;}
+.products .products-wrapper .cards-wrapper a:hover .cards{transform: scale(1.05);}
+
+/* --------------------------------Elder Care End---------------------------------- */
+
+/* --------------------------------Product Details Start--------------------- */
+
+.productDetails .product-details-wrapper{background-color: var(--bgForm);padding: 47px 49px;margin-top: 60px;}
+.productDetails .product-details-wrapper .img-wrap{max-width: 644px;}
+.productDetails .product-details-wrapper .img-wrap img{border-radius: 24px;}
+.productDetails .product-details-wrapper .right-sec .price h5{color: #CECECE;font-weight: 400;}
+.productDetails .product-details-wrapper .right-sec .rupees{width: 12px;height: 16px;}
+.productDetails .product-details-wrapper .right-sec .price{display: flex;align-items: center;margin-block: 19px 5px;}
+.productDetails .product-details-wrapper .right-sec .price .price-tag{width: 46px;height: 19px;}
+.productDetails .product-details-wrapper .right-sec .price .wrap{position: relative;}
+.productDetails .product-details-wrapper .right-sec .price .mrp{display: flex;align-items: center;margin-inline: 7px 14px;gap: 3px;}
+.productDetails .product-details-wrapper .right-sec .price .mrp h5{text-decoration:line-through;}
+.productDetails .product-details-wrapper .right-sec .org-price{display: flex;align-items: center;gap: 6px;margin-bottom: 42px;}
+.productDetails .product-details-wrapper .right-sec .org-price h5{font-weight: 400;color: #FFFFFF;}
+.productDetails .product-details-wrapper .right-sec .price p{position: absolute;font-size: 8px;top: -7px;left: 5px;}
+.productDetails .product-details-wrapper .right-sec label{color: #FFFFFF;}
+.productDetails .product-details-wrapper .right-sec select{border: none;background-color:#32443D;width: 40px;font-size: 16px;color: #FFFFFF;}
+.productDetails .product-details-wrapper .right-sec select option{font-size: 16px;}
+/* .productDetails .product-details-wrapper .right-sec select option{background-color: transparent;} */
+.productDetails .product-details-wrapper .right-sec select:hover,.productDetails .product-details-wrapper select:focus{border: none;outline: none;}
+.productDetails .product-details-wrapper .right-sec .medicine-info{margin-top: 70px;}
+.productDetails .product-details-wrapper .right-sec .medicine-info h4 {color: #FFFFFF;font-weight: 400;margin-bottom: 13px;}
+.productDetails .product-details-wrapper .right-sec .medicine-info p {font-size: 16px;font-family: "Cambay", sans-serif;}
+.productDetails .product-details-wrapper .middle {display: flex;justify-content: center;margin-top: 78px;}
+.productDetails .product-details-wrapper .middle button {width: 50%;}
+
+
+.productDetails .product-details-wrapper .suggest h4 {color: #FFFFFF;margin-bottom: 30px;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap {background-color: var(--bgColour);padding: 35px 27px;border-radius: 24px;display: flex;gap: 26px;justify-content: center;flex-wrap: wrap;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards{background-color: #FFFFFF;border-radius: 12px;padding: 18px 11px;width: 276px;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .img-wrap{width: 202px;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price p{font-size: 14px;color: #000000;font-weight: 700;font-family: "Chakra Petch", sans-serif;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .mrp{display: flex;align-items: center;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .mrp .org{display: flex;align-items: center;margin-inline: 6px 22px;gap: 3px;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .mrp .wrap{position: relative;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .mrp .offer{position: absolute;font-size: 8px;top: -6px;left: 4px;color: #FFFFFF;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .mrp p{color:#CECECE}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .mrp .rupees{width: 8px;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .org-price {display: flex;gap: 3.5px;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .org-price h5{font-weight: 400;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .price .org-price .rupees{width: 9px;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards button{margin-top: 8px ;}
+.productDetails .product-details-wrapper .suggest .suggest-wrap .cards .btn{display: flex;justify-content: center;}
+
+/* --------------------------------Product Details End--------------------------*/
+
+/* --------------------------------Payment Start--------------------------*/
+
+/* Product cart */
+.active{color: var(--primaryColour);}
+.active-line{background-color: var(--primaryColour);width: 103px;height: 1px;}
+.progress{background-color: var(--bgForm);height: 100px;display: flex;align-items: center;}
+
+.progress-wrap {display: flex;align-items: center;justify-content: space-around;}
+.progress-wrap .line{width: 103px;height: 1px;background-color: #FFFFFF;}
+.product-cart .left-sec .items-list .list .item-info label{display: inline-block;}
+/* .product-cart .left-sec{margin-right: 40px;} */
+.product-cart .left-sec .show-items{display: flex;justify-content: space-between;border-bottom: 1px solid #FFFFFF;padding-bottom: 11px;}
+.product-cart .left-sec .show-items h4{color: #FFFFFF;font-weight: 500;}
+.product-cart .left-sec .items-list {margin-top: 22px;display: flex;flex-direction: column;gap: 11px;}
+.product-cart .left-sec .items-list .list .img-wrap{width: 82px;height: 82px;}
+.product-cart .left-sec .items-list .list .img-wrap img{border-radius: 50%;}
+.product-cart .left-sec .items-list .list{display: flex;justify-content: space-between;background-color: var(--bgForm);padding: 13px 18px;border-radius: 12px;height: 100%;}
+.product-cart .left-sec .items-list .list .wrap{display: flex;align-items: center;gap: 11px;}
+.product-cart .left-sec .items-list .list .item-info label{color: #FFFFFF;}
+.product-cart .left-sec .items-list .list .item-info select{border: none;background-color: var(--bgForm);width: 40px;font-size: 16px;color: #FFFFFF;}
+.product-cart .left-sec .items-list .list .item-info select option{font-size: 14px;}
+/* .productDetails .product-details-wrapper .right-sec select option{background-color: transparent;} */
+.product-cart .left-sec .items-list .list .item-info select:hover,.product-cart .left-sec .items-list .list .item-info select:focus{border: none;outline: none;}
+.product-cart .left-sec .items-list .list .price{display: flex;flex-direction: column;align-items: end;gap: 10px;}
+.product-cart .left-sec .items-list .list .price .org-price {display: flex;gap: 3.5px;}
+.product-cart .left-sec .items-list .list .price .org-price h5{font-weight: 400;color: #FFFFFF;}
+.product-cart .left-sec .items-list .list .price .org-price .rupees{width: 12px;margin-right: 2px;}
+.product-cart .right-sec {border: 1px solid #FFFFFF;border-radius: 12px;padding: 15px 17px;position: sticky;top: 20%;bottom: auto;}
+.product-cart .right-sec .subtotal{display: flex;align-items: center;justify-content: space-between;}
+.product-cart .right-sec .subtotal h4{font-size: 14px;color: #FFFFFF;}
+.product-cart .right-sec .subtotal .org-price {display: flex;gap: 3.5px;}
+.product-cart .right-sec .subtotal .org-price h5{font-weight: 400;color: #FFFFFF;font-size: 14px;}
+.product-cart .right-sec .subtotal .org-price .rupees{width: 9px;}
+.product-cart .right-sec .shipping-cost{color: var(--primaryColour);font-size: 14px;}
+.product-cart .right-sec .btn{display: flex;margin-top: 55px;justify-content: center;}
+.product-cart .right-sec .btn button{width: 80%;}
+.product-cart .left-sec .items-list .list .wrap .delete-button  .d-btn{padding: 11px;min-width: 15px; background-color: rgb(255, 0, 0);border-radius: 50%;display: flex;align-items: center;justify-content: center;}
+hr{margin-block: 16px;}
+
+/* Product Address */
+
+.product-cart form {margin-top: 22px;}
+/* .form-row {display: flex;flex-wrap: wrap;margin-bottom: 16px;} */
+.product-cart .form-group {margin: 8px 1%;}
+.product-cart label {font-weight: 500;margin-bottom: 8px;display: block;color: #FFFFFF;}
+.product-cart label span{color: red;}
+.product-cart .btn-submit{margin-top: 20px;}
+
+/* Payment */
+
+.product-cart .left-sec .payment-option {margin-top: 26px;}
+.product-cart .left-sec .payment-form .payment-option .wrap{display: flex;align-items: center;margin-bottom: 12px;}
+.product-cart .left-sec .payment-form .payment-option .wrap input{width: auto;}
+.product-cart .left-sec .payment-form .payment-option .wrap input[type="radio"] {transform: scale(2.5);margin-right: 15px; }
+.product-cart .left-sec .payment-form .payment-option .wrap label{margin: 0 4px;font-size: 24px;}
+.product-cart .left-sec .payment-form .input-group .exp-card{display: flex;width: 40%;margin-bottom: 10px;gap: 5px;}
+.product-cart .left-sec .payment-form .input-group .card-cvv{width: 30%;}
+.product-cart .left-sec .payment-form .payment-option .card-icons{display: flex;gap: 10px;margin-top: 15px;}
+.product-cart .left-sec .payment-form .payment-option .card-icons .card{width: 35px;}
+.product-cart .left-sec .btn{margin-top: 60px;display: flex;justify-content: center;}
+.input-group {display: none;}
+
+
+/* success */
+
+.successful .variant{width: 173px; height: 173px; margin: 0 auto; }
+.successful h2{text-align: center;margin-top: 58px;}
+.successful h3{text-align: center;margin-block: 25px;color: #FFFFFF;font-weight: 400;}
+.successful .btn{display: flex;justify-content: center;}
+/* --------------------------------Payment End--------------------------*/
