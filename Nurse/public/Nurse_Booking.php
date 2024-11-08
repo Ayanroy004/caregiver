@@ -1,246 +1,551 @@
 <?php
-// require '../nurse.php';
+include "config.php";
+
+// Initialize doctor information
+$doctor = null;
+$holidays = [];
+$doctId = 0;
+
+// Fetch doctor data by ID from URL
+if (isset($_GET['doctor_id'])) {
+    $doctorId = $_GET['doctor_id'];
+    $doctId = $doctorId;
+
+    // Query to get doctor data
+    $query = "SELECT dname, dspecial, dimage, location, degree, price, holiday FROM doctors WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $doctorId);
+    if (!$stmt->execute()) {
+        die("Execution failed: " . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+
+    // Check if a record is found
+    if ($result->num_rows > 0) {
+        $doctor = $result->fetch_assoc();
+
+        // Fetch holidays and convert to array
+        if (!empty($doctor['holiday'])) {
+            $holidays = explode(',', $doctor['holiday']); // Convert CSV to array
+            $holidays = array_map('trim', $holidays); // Optionally, trim whitespace from each holiday
+        }
+    } else {
+        echo "No doctor found with that ID.";
+    }
+    $stmt->close();
+}
+
+// Process form submission to save appointment
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['date']) && isset($_POST['time'])) {
+        $doctorId = $doctId;
+        $date = $_POST['date'];
+        $time = $_POST['time'];
+
+        // Check if the selected time slot is already booked
+        $checkQuery = "SELECT * FROM doctorcustomer WHERE did = ? AND date = ? AND time = ?";
+        $stmt = $conn->prepare($checkQuery);
+        $stmt->bind_param("iss", $doctorId, $date, $time);
+        $stmt->execute();
+        $checkResult = $stmt->get_result();
+
+        if ($checkResult->num_rows > 0) {
+            echo "This time slot is already booked. Please choose another time.";
+        } else {
+            // Insert data into doctorcustomer table
+            $insertQuery = "INSERT INTO doctorcustomer (did, date, time) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($insertQuery);
+            $stmt->bind_param("iss", $doctorId, $date, $time);
+
+            if ($stmt->execute()) {
+                header("Location: payment.php?doctor_id=" . urlencode($doctorId));
+                exit();
+            } else {
+                echo "Error scheduling appointment: " . $stmt->error;
+            }
+        }
+
+        $stmt->close();
+    }
+}
+
+// Fetch doctor's booked appointments
+$appointments = [];
+$sql = "SELECT date, time FROM doctorcustomer WHERE did = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $doctId);
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $appointments[] = $row;
+}
+$stmt->close();
+$conn->close();
 ?>
+
+<script>
+    // Pass the PHP arrays as JSON to JavaScript
+    const holidays = <?php echo json_encode($holidays); ?>;
+    const appointments = <?php echo json_encode($appointments); ?>;
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Nurse</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/nurse_booking.css">
-</head>
-<body>
-    <div class="navbar">
-        <!-- Logo -->
-        <a href="#" class="logo">
-            <img src="../assests/caregiver-logo.png" alt="Logo">
-        </a>
-    
-        <!-- Menu icon for small screens -->
-        <div class="menu-icon" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div> <!-- Three-dot menu -->
-    
-        <!-- Center Links -->
-        <div class="center-links">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <div class="dropdown">
-                <button class="dropbtn">Service <i class="fa-solid fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="#doctor">Doctor</a>
-                    <a href="#labtest">Lab test</a>
-                    <a href="#nurse">Nurse</a>
-                    <a href="#takecare">Take care</a>
-                    <a href="#physiotheraphy">Physiotheraphy</a>
-                    <a href="#medicine">Modicine</a>
-    
-                </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor | Appointment</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+  <style>
+    .disable{background-color: rgb(68, 68, 68);color:#FFFFFF;pointer-events: none;}
+  </style>
+  <body>
+    <header>
+      <nav>
+        <div class="custom-container">
+          <div class="wrapper">
+            <div class="logo">
+              <a href="#"><img src="./assets/logo.png" alt="Company Logo" /></a>
             </div>
-            <a href="#contact">Contact Us</a>
-        </div>
-    
-        <!-- Right Section -->
-        <div class="right-section">
-            <a href="#user"><i class="fa-solid fa-user"></i></a>
-            <!-- <a href="#signup" class="button signup">Sign Up</a>
-            <a href="#login" class="button login">Login</a> -->
-        </div>
-    </div>
-    
-    <div class="image-big-div">
-        <img class="image-big" src="../assests/big-image.png" alt="Nurse-image">
-    </div>
-    <h2 id="booking-head">Booking</h2>
-    <!-- booking section -->
-    <div class="booking-section">
 
-     <div class="booking-container">
-        <div class="profile">
-            <img src="../assests/nurse-1.jpg" alt="Shima Das">
-            <div class="profile-info">
-                <h2 id="nrs" class="nurse-name1"></h2>
-                <p class="nurse-type">Home Nurse</p>
-                <p class="nurse-qualification">BSN, MSN</p>
-                <p class="nurse-address">Kolkata</p>
-            </div>
-        </div>
-    
-        <div class="calendar-schedule">
-            <div class="calendar">
-                    <div class="date-picker-container">
-                        <div class="date-picker-header">Pick Date</div>
-                        <div class="month"><button class="month-change lessthan"><i class="fa-solid fa-less-than"></i></button>
-                            October 2024 <button class="month-change greaterthan"><i class="fa-solid fa-greater-than"></i></button></div>
-                        <div class="calendar">
-                            <div class="day">SUN</div>
-                            <div class="day">MON</div>
-                            <div class="day">TUE</div>
-                            <div class="day">WED</div>
-                            <div class="day">THU</div>
-                            <div class="day">FRI</div>
-                            <div class="day">SAT</div>
-                    
-                            <!-- Empty slots for days before September 1 -->
-                            <div class="date"></div>
-                            <div class="date"></div>
-                            <div class="date"></div>
-                            <div class="date"></div>
-                            <div class="date"></div>
-                            <div class="date"></div>
-                    
-                            <!-- Dates of September -->
-                            <div class="date">1</div>
-                            <div class="date">2</div>
-                            <div class="date">3</div>
-                            <div class="date">4</div>
-                            <div class="date">5</div>
-                            <div class="date">6</div>
-                            <div class="date">7</div>
-                            <div class="date">8</div>
-                            <div class="date">9</div>
-                            <div class="date">10</div>
-                            <div class="date">11</div>
-                            <div class="date">12</div>
-                            <div class="date">13</div>
-                            <div class="date">14</div>
-                            <div class="date">15</div>
-                            <div class="date">16</div>
-                            <div class="date">17</div>
-                            <div class="date">18</div>
-                            <div class="date selected">19</div> <!-- Selected Date -->
-                            <div class="date">20</div>
-                            <div class="date">21</div>
-                            <div class="date">22</div>
-                            <div class="date">23</div>
-                            <div class="date">24</div>
-                            <div class="date">25</div>
-                            <div class="date">26</div>
-                            <div class="date">27</div>
-                            <div class="date">28</div>
-                            <div class="date">29</div>
-                            <div class="date">30</div>
-                        </div>
+            <div class="navigation cont">
+              <ul class="first-ul ">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li class="nav2">
+                  <div class="wrap">
+                    <p class="service">Services</p>
+                    <div class="dropdown">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="5"
+                        viewBox="0 0 10 5"
+                        fill="none"
+                      >
+                        <path d="M5 5L0 0H10L5 5Z" fill="#1D1B20" />
+                        <path d="M5 5L0 0H10L5 5Z" fill="white" />
+                      </svg>
                     </div>
-            </div>
-    
-            <div class="schedule">
-                <h3>Schedule</h3>
-                <table>
-                    <tr>
-                        <th>Time</th>
-                        <th>Price</th>
-                        <th>Pay</th>
-                    </tr>
-                    <tr>
-                        <td>10:00am - 10:00pm (12 hrs)</td>
-                        <td>₹500</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
-                    </tr>
-                    <tr>
-                        <td>10:00pm - 10:00am (12 hrs)</td>
-                        <td>₹500</td>
-                       <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
-                    </tr>
-                    <tr>
-                        <td>10:00am - 10:00am (24 hrs)</td>
-                        <td>₹900</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
-                    </tr>
-                    <tr>
-                        <td>10:00pm - 10:00pm (24 hrs)</td>
-                        <td>₹900</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
-                    </tr>
-                    <tr>
-                        <td class="book-days">Book Up to 5 days</td>
-                    </tr>
-                    <tr>
-                        <!-- <td colspan="2"><strong>Total for 5 Days</strong></td>
-                        <td><strong>₹2700</strong></td> -->
-                       
-                        <td>
-                        <input type="radio" id="day1" name="day" value="1">
-                        <label for="day1">1</label>
-                        <input type="radio" id="day2" name="day" value="2">
-                        <label for="day2">2</label>
-                        <input type="radio" id="day3" name="day" value="3">
-                        <label for="day3">3</label>
-                        <input type="radio" id="day4" name="day" value="4">
-                        <label for="day4">4</label>
-                        <input type="radio" id="day5" name="day" value="5">
-                        <label for="day5">5</label>
-                        </td>
-                        <td> ₹900</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    
-        <div class="rules">
-            <h3>Rules</h3>
-            <ul>
-                <li>If the nurse arrives some time late, that time will be managed.</li>
-                <li>Give honest and detailed answers about your health, symptoms, lifestyle, and any medications you take.
-                </li>
-                <li>Respect the nurse's duties.</li>
-                <li>Avoid lengthy discussions about non-urgent matters to respect the nurse and other patients' time.</li>
-                <li>Think of the nurse as your family.</li>
-            </ul>
-        </div>
-    </div>
-    </div>
-    <hr>
-    <!-- footer  -->
+                  </div>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <img class="ftr-logo" src="../assests/caregiver-logo.png" alt="Logo">
-                <p>Lorem ipsum, dolor sit amet consectetur adipiscing elit. Debitis facilis, nemo expedita, placeat nesciunt
-                    repellat laudantium!</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3 class="ftr-header">Quick Links</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Condition</a></li>
-                    <li><a href="#">Services</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3 class="ftr-header">Caregiver Service</h3>
-                <ul>
-                    <li><a href="#">Doctor</a></li>
+                  <ul class="effect menu-toggle">
+                    <li><a href="./doctor.php">Doctor</a></li>
                     <li><a href="#">Nurse</a></li>
+                    <li><a href="#">Care Taker</a></li>
                     <li><a href="#">Physiotherapist</a></li>
                     <li><a href="#">Lab Test</a></li>
-                    <li><a href="#">Care Taker</a></li>
-                    <li><a href="#">Medicine</a></li>
-                </ul>
+                    <li>
+                      <a href="./medicine.html" target="_blank">Medicine</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
             </div>
-            <div class="footer-section">
-                <h3 class="ftr-header">Contact info</h3>
-                <p><i class="fas fa-phone"></i> +91-1234567890</p>
-                <p><i class="fas fa-envelope"></i> caregiver270@gmail.com</p>
-                <p><i class="fa-solid fa-location-dot"></i> Dharampur,near Khadina More,Chinsurah,West Bengal 712101</p>
-                <a href="#" class="get-started-btn">Get Started</a>
-            </div>
-    
-        </div>
-        <div class="copyright">
-            <i class="fa-regular fa-copyright"></i> 2024 Caregiver Web Application. All rights reserved.
-        </div>
-    </footer>
 
-     <script src="../script/main.js"></script>
-</body>
+            <div class="log-sign-btn-wrapper">
+              <div class="user">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="23"
+                  height="27"
+                  viewBox="0 0 23 27"
+                  fill="none"
+                >
+                  <path
+                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
+                    stroke="#B3B3B3"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
+                    stroke="white"
+                    stroke-opacity="0.2"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <button>Sign Up</button>
+              <button>Login</button>
+              <div class="hamburger">
+                <img src="./assets/menu.png" alt="hamburger" />
+                <img class="none" src="./assets/categories.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main class="divider">
+    <section class="sec-gap">
+        <div class="custom-container appoinment">
+            <h1>Pick Date</h1>
+            <form method="post" action="">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col">
+                        <div class="list">
+                            <div class="doc">
+                            <div class="image">
+                                    <!-- Display the doctor image from BLOB data -->
+                                    <?php if (!empty($doctor['dimage'])): ?>
+                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($doctor['dimage']); ?>" alt="doctor" />
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="doc-info">
+                                    <!-- Doctor information dynamically displayed -->
+                                    <h3><?php echo htmlspecialchars($doctor['dname'] ?? 'Doctor Name'); ?></h3>
+                                    <h5><?php echo htmlspecialchars($doctor['dspecial'] ?? 'Specialty'); ?></h5>
+                                    <h5><?php echo htmlspecialchars($doctor['degree'] ?? 'Qualifications'); ?></h5>
+                                    <h5><?php echo htmlspecialchars($doctor['location'] ?? 'Location'); ?></h5>
+                                </div>
+                            </div>
+                            <div class="visit">
+                                <h4>Visit: <?php echo htmlspecialchars($doctor['price'] ?? 'N/A'); ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Date Picker Section -->
+               
+                 <div class="row">
+                    <div class="col">
+                        <div class="date-picker">
+                            <h4 class="pick">Pick Date</h4>
+                            <input type="text" id="date-input" name="date" class="date-input" placeholder="Select Date" readonly />
+                            <div id="calendar" class="calendar">
+                                <div class="calendar-header">
+                                    <button onclick="prevMonth()">&#10094;</button>
+                                    <span id="calendar-month-year"></span>
+                                    <button onclick="nextMonth()">&#10095;</button>
+                                </div>
+                                <div class="calendar-grid">
+                                    <div class="calendar-day">SUN</div>
+                                    <div class="calendar-day">MON</div>
+                                    <div class="calendar-day">TUE</div>
+                                    <div class="calendar-day">WED</div>
+                                    <div class="calendar-day">THU</div>
+                                    <div class="calendar-day">FRI</div>
+                                    <div class="calendar-day">SAT</div>
+                                </div>
+                                <div id="calendar-dates" class="calendar-grid"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                      <input type="hidden" name="time" class="date-box" value="">
+                        <div class="time-slots">
+                            <!-- Morning Slot -->
+                            <div class="time-slot-container">
+                                <div class="time-slot-header">Morning</div>
+                                <div class="time-slot-grid">
+                                    <div class="time-slot " onclick="selectTimeSlot(this)">09:00 AM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">09:30 AM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">10:00 AM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">10:30 AM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">11:00 AM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">11:30 AM</div>
+                                </div>
+                            </div>
+
+                            <!-- Afternoon Slot -->
+                            <div class="time-slot-container">
+                                <div class="time-slot-header">Afternoon</div>
+                                <div class="time-slot-grid">
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">12:00 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">12:30 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">01:00 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">01:30 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">02:00 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">02:30 PM</div>
+                                </div>
+                            </div>
+
+                            <!-- Evening Slot -->
+                            <div class="time-slot-container">
+                                <div class="time-slot-header">Evening</div>
+                                <div class="time-slot-grid">
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">05:00 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">05:30 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">06:00 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">06:30 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">07:00 PM</div>
+                                    <div class="time-slot" onclick="selectTimeSlot(this)">07:30 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+              
+
+                <!-- Rules Section -->
+                <div class="row">
+                    <div class="col">
+                        <div class="rules-container">
+                            <div class="rules-header">Rules</div>
+                            <ul class="rules-list">
+                                <li>If this doctor’s prescription is present, carry it with you.</li>
+                                <li>Give honest answers about your health, symptoms, and lifestyle.</li>
+                                <li>Avoid lengthy discussions about non-urgent matters.</li>
+                                <li>Prepare a list of symptoms, medications, and questions to ask.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue Button -->
+                <div class="btn">
+                    <button type="submit" name="continue">Continue</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </section>
+
+
+
+      <div class="footer-part">
+        <footer>
+          <div class="custom-container">
+            <div class="row">
+              <div class="col-25 col-6 col-100">
+                <div class="left-sec">
+                  <a href="#">
+                    <div class="logo-wrap">
+                      <img src="./assets/logo.png" alt="company logo" />
+                    </div>
+                  </a>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. A
+                    iste dolores animi alias libero, perferendis cum pariatur
+                    rem, quidem quo molestiae. Facere enim quod labore ea ab, ut
+                    error tempora.
+                  </p>
+                  <div class="social-media-logo">
+                    <a href="#">
+                      <div class="social">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="10"
+                          height="16"
+                          viewBox="0 0 10 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M9.5 0.5H7.25C6.25544 0.5 5.30161 0.895088 4.59835 1.59835C3.89509 2.30161 3.5 3.25544 3.5 4.25V6.5H1.25V9.5H3.5V15.5H6.5V9.5H8.75L9.5 6.5H6.5V4.25C6.5 4.05109 6.57902 3.86032 6.71967 3.71967C6.86032 3.57902 7.05109 3.5 7.25 3.5H9.5V0.5Z"
+                            stroke="white"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                    <a href="#">
+                      <div class="social">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          style="&#10;    font-family: -webkit-body;&#10;"
+                        >
+                          <path
+                            d="M12.125 3.875H12.1325M4.25 0.5H11.75C13.8211 0.5 15.5 2.17893 15.5 4.25V11.75C15.5 13.8211 13.8211 15.5 11.75 15.5H4.25C2.17893 15.5 0.5 13.8211 0.5 11.75V4.25C0.5 2.17893 2.17893 0.5 4.25 0.5ZM11 7.5275C11.0926 8.15168 10.9859 8.78916 10.6953 9.34926C10.4047 9.90936 9.94486 10.3636 9.38122 10.6473C8.81758 10.931 8.17884 11.0297 7.55584 10.9294C6.93284 10.8292 6.35732 10.5351 5.91113 10.0889C5.46494 9.64268 5.1708 9.06716 5.07055 8.44416C4.9703 7.82116 5.06905 7.18242 5.35274 6.61878C5.63644 6.05514 6.09064 5.59531 6.65074 5.30468C7.21084 5.01406 7.84832 4.90744 8.4725 5C9.10919 5.09441 9.69864 5.3911 10.1538 5.84623C10.6089 6.30136 10.9056 6.89081 11 7.5275Z"
+                            stroke="white"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                    <a href="#">
+                      <div class="social">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="16"
+                          viewBox="0 0 18 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M17.25 1.25C16.5318 1.75661 15.7366 2.14409 14.895 2.3975C14.4433 1.87814 13.843 1.51002 13.1753 1.34295C12.5076 1.17587 11.8046 1.2179 11.1616 1.46334C10.5185 1.70879 9.96633 2.1458 9.57974 2.71529C9.19314 3.28478 8.99077 3.95926 9 4.6475V5.3975C7.68198 5.43168 6.37596 5.13936 5.19826 4.54659C4.02056 3.95381 3.00774 3.07898 2.25 2C2.25 2 -0.75 8.75 6 11.75C4.4554 12.7985 2.61537 13.3242 0.75 13.25C7.5 17 15.75 13.25 15.75 4.625C15.7493 4.41609 15.7292 4.2077 15.69 4.0025C16.4555 3.24762 16.9956 2.29454 17.25 1.25Z"
+                            stroke="white"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                    <a href="#">
+                      <div class="social">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M11 5C12.1935 5 13.3381 5.47411 14.182 6.31802C15.0259 7.16193 15.5 8.30653 15.5 9.5V14.75H12.5V9.5C12.5 9.10218 12.342 8.72064 12.0607 8.43934C11.7794 8.15804 11.3978 8 11 8C10.6022 8 10.2206 8.15804 9.93934 8.43934C9.65804 8.72064 9.5 9.10218 9.5 9.5V14.75H6.5V9.5C6.5 8.30653 6.97411 7.16193 7.81802 6.31802C8.66193 5.47411 9.80653 5 11 5Z"
+                            stroke="white"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M3.5 5.75H0.5V14.75H3.5V5.75Z"
+                            stroke="white"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2 3.5C2.82843 3.5 3.5 2.82843 3.5 2C3.5 1.17157 2.82843 0.5 2 0.5C1.17157 0.5 0.5 1.17157 0.5 2C0.5 2.82843 1.17157 3.5 2 3.5Z"
+                            stroke="white"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mid-sec">
+                  <div class="quick-link">
+                    <h5>Quick Links</h5>
+                    <ul>
+                      <li>
+                        <a href="" target="_blank" target="_blank">About Us</a>
+                      </li>
+                      <li><a href="" target="_blank">Privacy Policy</a></li>
+                      <li><a href="" target="_blank">Terms & Condition </a></li>
+                      <li><a href="" target="_blank">Services</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="services">
+                    <h5>CareGiver Services</h5>
+                    <ul>
+                      <li>
+                        <a href="" target="_blank" target="_blank">Doctor</a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank" target="_blank">Nurse</a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank" target="_blank"
+                          >Physiotherapist
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank" target="_blank">Lab test</a>
+                      </li>
+                      <li>
+                        <a href="./medicine.html" target="_blank">Medicine</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col right-sec">
+                <div class="contact-info">
+                  <h5>Contact Info</h5>
+                  <ul>
+                    <li>
+                      <div class="icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M10.0336 3.33332C10.6848 3.46037 11.2832 3.77883 11.7523 4.24795C12.2214 4.71707 12.5399 5.3155 12.6669 5.96666M10.0336 0.666656C11.3865 0.816947 12.648 1.42277 13.6111 2.38466C14.5742 3.34655 15.1816 4.60733 15.3336 5.95999M14.6669 11.28V13.28C14.6677 13.4657 14.6297 13.6494 14.5553 13.8196C14.4809 13.9897 14.3718 14.1424 14.235 14.2679C14.0982 14.3934 13.9367 14.489 13.7608 14.5485C13.5849 14.6079 13.3985 14.63 13.2136 14.6133C11.1622 14.3904 9.19161 13.6894 7.46028 12.5667C5.8495 11.5431 4.48384 10.1774 3.46028 8.56666C2.3336 6.82746 1.63244 4.84732 1.41361 2.78666C1.39695 2.6023 1.41886 2.4165 1.47795 2.24107C1.53703 2.06565 1.63199 1.90445 1.75679 1.76774C1.88159 1.63103 2.03348 1.5218 2.20281 1.447C2.37213 1.37221 2.55517 1.3335 2.74028 1.33332H4.74028C5.06382 1.33014 5.37748 1.44471 5.62279 1.65568C5.8681 1.86665 6.02833 2.15962 6.07361 2.47999C6.15803 3.12003 6.31458 3.74847 6.54028 4.35332C6.62998 4.59194 6.64939 4.85127 6.59622 5.10058C6.54305 5.34989 6.41952 5.57873 6.24028 5.75999L5.39361 6.60666C6.34265 8.27569 7.72458 9.65762 9.39361 10.6067L10.2403 9.75999C10.4215 9.58075 10.6504 9.45722 10.8997 9.40405C11.149 9.35088 11.4083 9.37029 11.6469 9.45999C12.2518 9.68569 12.8802 9.84224 13.5203 9.92666C13.8441 9.97234 14.1399 10.1355 14.3513 10.385C14.5627 10.6345 14.6751 10.953 14.6669 11.28Z"
+                            stroke="white"
+                            stroke-width="1.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <p>+91-1234567890</p>
+                    </li>
+                    <li>
+                      <div class="icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="12"
+                          viewBox="0 0 14 12"
+                          fill="none"
+                        >
+                          <path
+                            d="M6.99967 6.07703L2.16634 3.0562V2.90211L6.73468 5.75732L6.99967 5.92295L7.26467 5.75732L12.598 2.42399L13.1663 2.06878V9.99999C13.1663 10.233 13.0892 10.42 12.9211 10.5881C12.753 10.7562 12.566 10.8333 12.333 10.8333H1.66634C1.43334 10.8333 1.24632 10.7562 1.07823 10.5881C0.910137 10.42 0.833008 10.233 0.833008 9.99999V2.06878L1.16634 2.27711V2.4312V3.33332V9.99999V10.5H1.66634H12.333H12.833V9.99999V3.33332V2.4312L12.068 2.90932L6.99967 6.07703ZM12.9995 1.49999H12.333H1.66634H0.999839C1.02335 1.46997 1.04946 1.44065 1.07823 1.41188C1.24632 1.24379 1.43334 1.16666 1.66634 1.16666H12.333C12.566 1.16666 12.753 1.24379 12.9211 1.41188C12.9499 1.44065 12.976 1.46997 12.9995 1.49999Z"
+                            fill="#1D1B20"
+                            stroke="white"
+                          />
+                        </svg>
+                      </div>
+                      <p>caregiver270@gmail.com</p>
+                    </li>
+                    <li>
+                      <div class="icon loc">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M14.8792 13.9635C17.8944 10.5 17.5613 6.21998 14.5461 3.28544C11.4191 0.242081 6.35378 0.237621 3.23241 3.27548C0.22266 6.20471 0.394389 11 2.91916 13.953C5.10829 16.5134 6.94658 18.001 7.39658 18.3512C7.46708 18.406 7.53318 18.4643 7.60108 18.5222C8.33258 19.1451 9.41078 19.159 10.1577 18.5637C10.2613 18.481 10.3632 18.3956 10.4699 18.3169C10.9405 17.97 12.4279 16.7793 14.8792 13.9635Z"
+                            stroke="white"
+                            stroke-width="1.4"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            opacity="0.4"
+                            d="M8.89453 12C10.5514 12 11.8945 10.6569 11.8945 9C11.8945 7.34315 10.5514 6 8.89453 6C7.23763 6 5.89453 7.34315 5.89453 9C5.89453 10.6569 7.23763 12 8.89453 12Z"
+                            stroke="white"
+                            stroke-width="1.4"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <p>
+                        Dharampur,near Khadina More,Chinsurah,West Bengal 712101
+                      </p>
+                    </li>
+                  </ul>
+                  <button class="outline-button">Get Started</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <section>
+          <div class="copy-rights">
+            <p>© 2024 Caregiver Web Application. All rights reserved.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="./script/index.js"></script>
+  </body>
 </html>
