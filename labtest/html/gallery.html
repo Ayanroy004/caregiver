@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALLERY</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #1A3636;
+    color: #FFFFFF;
+}
+
+header {
+    width: 100%;
+    background-color: #181717;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+position: relative;
+}
+
+nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #ff4b4b;
+}      
+
+.dropdown:hover .dropdown-menu {
+display: block;
+}
+
+.background-image {
+    background: url("../images/lab\ test\ bg\ image.png");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-content h1 {
+    font-size: 48px;
+    text-align: center;
+}
+
+.auth-buttons {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+font-size: 16px;
+color: white;
+background-color: #A02334;
+transition: background-color 0.3s;
+}
+
+button:hover {
+background-color: #ff4d4d;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.dropdown-menu {
+display: none;
+color: #000;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: white;
+border-radius: 5px;
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+z-index: 1;
+}
+
+.dropdown-menu li {
+width: 100%;
+}
+
+.dropdown-menu li a {
+display: block;
+padding: 10px 20px;
+color: black;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+background-color: #ff4b4b;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.user-icon {
+font-size: 24px;
+color: #f5f5f5;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.gallery {
+    padding: 4rem 7%;
+}
+
+.gallery h1 {
+    color: #FFFFFF;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.main-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.inner-gallery {
+    flex: 1 1 300px;
+    margin: 10px;
+}
+
+.inner-gallery img {
+    width: 100%;
+    transition: .3s;
+    border-radius: 10px;
+}
+
+.inner-gallery img:hover {
+    transform: scale(1.05);
+}
+
+footer {
+background-color: #1A3636;
+color: white;
+padding: 0px;
+padding-top: 30px;
+}
+
+.footer-container {
+display: flex;
+justify-content: space-between;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+.footer-logo {
+flex: 1;
+margin-bottom: 30px;
+}
+
+.footer-logo img {
+    max-width: 100px;
+}
+
+.social-icons {
+margin-bottom: 10px;
+padding-top: 20px;
+}
+
+.footer-links, .footer-services, .footer-contact {
+flex: 1;
+}
+
+.footer-links h3, .footer-services h3, .footer-contact h3 {
+margin-bottom: 15px;
+}
+
+.footer-links a, .footer-services a, .footer-contact p {
+display: block;
+color: white;
+margin-bottom: 8px;
+text-decoration: none;
+}
+
+.footer-contact button {
+background-color: #A02334;
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.footer-bottom {
+background-color: #A02334;
+padding: 10px 0;
+text-align: center;
+font-size: 14px;
+color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+header {
+flex-direction: column;
+align-items: flex-start;
+}
+
+nav ul li {
+margin: 5px 0;
+}
+
+.background-content h1 {
+font-size: 32px;
+}
+
+.gallery h1 {
+font-size: 32px;
+}
+
+.inner-gallery {
+flex: 1 1 100%;
+}
+}
+
+@media (max-width: 480px) {
+.background-content h1 {
+font-size: 28px;
+}
+
+.gallery h1 {
+font-size: 28px;
+}
+}
+@media (min-width: 768px) {
+nav {
+flex-direction: row;
+}
+.content {
+padding: 20px 5%;
+}
+.footer-container {
+flex-direction: row;
+justify-content: space-between;
+max-width: 1200px;
+margin: 0 auto;
+}
+.footer-links, .footer-services, .footer-contact {
+flex: 1;
+text-align: left;
+}
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../images/caregiver logo.png">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Service ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Doctor</a></li>
+                        <li><a href="#">Nurse</a></li>
+                        <li><a href="#">Physiotherapist</a></li>
+                        <li><a href="#">Lab Test</a></li>
+                        <li><a href="#">Care Taker</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <img src="../images/user.png">
+                <button class="sign-up">Sign Up</button>
+                <button class="login"><u>Login</u></button>
+            </div>
+        </nav>
+    </header>
+    <div class="background-image">
+        <div class="background-content">
+            <h1>GALLERY <br>GALAXY </h1>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <h1>Gallery</h1>
+        <div class="main-gallery">
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 1.jpg">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 2.jpg">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 3.jpg">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 4.jpg">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 6.jpg">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 7.jpg">
+            </div>
+            </div>
+            <!--<div class="inner-gallery">
+                <img src="../images/GALLERY 11.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 12.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 13.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 14.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 15.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 16.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 17.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 18.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 19.png">
+            </div>
+            <div class="inner-gallery">
+                <img src="../images/GALLERY 20.png">
+            </div>-->
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="../images/caregiver logo.png">
+                <p>“Caregiver: Enveloping You in Dazzling Compassionate Care—Dazzling Support 24/7, Always by Your Side.”</p>
+                <div class="social-icons">
+                    <img src="../images/fb.png" alt="Facebook">
+                    <img src="../images/insta.png" alt="Instagram">
+                    <img src="../images/twitter.png" alt="Twitter">
+                    <img src="../images/linkdin.png" alt="LinkedIn">
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3><u>Quick Links</u></h3>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Our Team</a>
+                <a href="#">Services</a>
+            </div>
+            <div class="footer-services">
+                <h3><u>Caregiver Service</u></h3>
+                <a href="#">Doctor</a>
+                <a href="#">Nurse</a>
+                <a href="#">Physiotherapist</a>
+                <a href="#">Lab Test</a>
+                <a href="#">Care Taker</a>
+            </div>
+            <div class="footer-contact">
+                <h3><u>Contact info</u></h3>
+                <p><img src="../images/Phone call.png">+91-1234567890</p>
+                <p><img src="../images/mail.png">caregiver270@gmail.com</p>
+                <p><img src="../images/Phone call.png">+033-2569-3125</p>
+                <button>Get Started</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy;2024 Caregiver Web Application. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

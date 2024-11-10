@@ -1,0 +1,658 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPULAR CATEGORIES</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #1A3636;
+    color: #FFFFFF;
+}
+
+header {
+    width: 100%;
+    background-color: #181717;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+position: relative;
+}
+
+nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #ff4b4b;
+}      
+
+.dropdown:hover .dropdown-menu {
+display: block;
+}
+
+.background-image {
+    background: url("../images/lab\ test\ bg\ image.png");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-content h2 {
+    font-size: 40px;
+    text-align: center;
+}
+
+.auth-buttons {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+font-size: 16px;
+color: white;
+background-color: #A02334;
+transition: background-color 0.3s;
+}
+
+button:hover {
+background-color: #ff4d4d;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.dropdown-menu {
+display: none;
+color: #000;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: white;
+border-radius: 5px;
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+z-index: 1;
+}
+
+.dropdown-menu li {
+width: 100%;
+}
+
+.dropdown-menu li a {
+display: block;
+padding: 10px 20px;
+color: black;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+background-color: #ff4b4b;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.user-icon {
+font-size: 24px;
+color: #f5f5f5;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.form-container {
+width: 60%;
+margin: 0 auto;
+}
+
+.input-field {
+display: block;
+width: 80%;
+padding: 10px;
+margin: 10px auto;
+border: none;
+border-radius: 5px;
+}
+
+.auth-buttons {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+font-size: 16px;
+color: white;
+background-color: #A02334;
+transition: background-color 0.3s;
+}
+
+button:hover {
+background-color: #ff4d4d;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.dropdown-menu {
+display: none;
+color: #000;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: white;
+border-radius: 5px;
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+z-index: 1;
+}
+
+.dropdown-menu li {
+width: 100%;
+}
+
+.dropdown-menu li a {
+display: block;
+padding: 10px 20px;
+color: black;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+background-color: #ff4b4b;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.user-icon {
+font-size: 24px;
+color: #f5f5f5;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.popular {
+    padding: 40px 0;
+    background-color: #1A3636;
+    text-align: center;
+    color: #fff;
+}
+
+.popular h2 {
+    font-size: 42px;
+    font-family: 'Inter', sans-serif;
+    color: #4158A6;
+    text-shadow: 0px 4px 6px rgba(255, 255, 255, 1);
+}
+
+.popular-slider {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.popular-item {
+    width: 250px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.popular-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.popular-item img:hover {
+transform: scale(1.1);
+border-radius: 15px;
+}
+
+.popular-item p {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.additional-popular {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+/* Carousel */
+.carousel {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+width: 300px; 
+height: 300px; 
+margin: 0 auto;
+overflow: hidden; 
+border-radius: 50%; 
+border: 10px solid #A02334; 
+box-sizing: border-box; 
+}
+
+/* Carousel Images */
+.carousel-images {
+display: flex;
+transition: transform 0.5s ease-in-out;
+width: 100%; 
+}
+
+.carousel-image {
+width: 100%; 
+height: 100%; 
+object-fit: cover; 
+border-radius: 50%; 
+flex-shrink: 0; 
+}
+
+/* Carousel Dots */
+.carousel-dots {
+position: absolute;
+bottom: 10px;
+text-align: center;
+width: 100%;
+}
+
+.dot {
+display: inline-block;
+width: 10px;
+height: 10px;
+margin: 0 5px;
+background-color: #394e4a;
+border-radius: 50%;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.dot.active, .dot:hover {
+background-color: #ffffff;
+}
+
+.content {
+    padding: 50px 10%;
+    background-color: #1A3636;
+}
+
+.content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #D3D3D3;
+}
+
+footer {
+    background-color: #1A3636;
+    color: white;
+    padding: 0px;
+    padding-top: 30px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    flex: 1;
+    margin-bottom: 30px;
+}
+
+.footer-logo img {
+    max-width: 100px;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+
+.footer-links, .footer-services, .footer-contact {
+    flex: 1;
+    margin-bottom: 30px;
+}
+
+.footer-links h3, .footer-services h3, .footer-contact h3 {
+    margin-bottom: 15px;
+}
+
+.footer-links a, .footer-services a, .footer-contact p {
+    display: block;
+    color: white;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.footer-contact button {
+    background-color: #A02334;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-bottom {
+    background-color: #A02334;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+.carousel {
+flex-direction: column;
+gap: 10px;
+}
+
+.carousel-item {
+width: 100%;
+max-width: 300px;
+}
+
+header {
+flex-direction: column;
+align-items: flex-start;
+}
+
+nav ul {
+flex-direction: column;
+gap: 15px;
+margin-top: 15px;
+}
+
+.background-image {
+height: 60vh;
+}
+
+.background-content h1 {
+font-size: 32px;
+}
+
+.content {
+padding: 30px 5%;
+}
+
+.footer-container {
+flex-direction: column;
+align-items: center;
+gap: 30px;
+}
+
+.footer-logo, .footer-links, .footer-services, .footer-contact {
+text-align: center;
+flex: none;
+}
+
+.footer-logo img {
+max-width: 80px;
+}
+}
+
+@media (max-width: 480px) {
+.background-content h1 {
+font-size: 24px;
+}
+
+.popular-categories h2 {
+font-size: 28px;
+}
+
+.carousel-item {
+width: 80%;
+max-width: 250px;
+}
+
+.footer-logo p {
+font-size: 14px;
+}
+}
+
+@media (min-width: 768px) {
+nav {
+flex-direction: row;
+}
+.content {
+padding: 20px 5%;
+}
+.footer-container {
+flex-direction: row;
+justify-content: space-between;
+max-width: 1200px;
+margin: 0 auto;
+}
+.footer-links, .footer-services, .footer-contact {
+flex: 1;
+text-align: left;
+}
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="../images/caregiver logo.png" alt="Caregiver Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li class="dropdown">
+                <a href="#">Service ▼</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Doctor</a></li>
+                    <li><a href="#">Nurse</a></li>
+                    <li><a href="#">Physiotherapist</a></li>
+                    <li><a href="#">Lab Test</a></li>
+                    <li><a href="#">Care Taker</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <img src="../images/user.png" alt="User Icon">
+            <button class="sign-up">Sign Up</button>
+            <button class="login"><u>Login</u></button>
+        </div>
+    </nav>
+</header>
+
+<div class="background-image">
+    <div class="background-content">
+        <h1>POPULAR<br>CATEGORIES</h1>
+    </div>
+</div>
+<section class="popular">
+    <h2>Popular Categories</h2>
+    <div class="popular-slider">
+        <div class="popular-item">
+            <img src="../images/GROUP 1.jpg">
+            <p>Group A</p>
+        </div>
+        <div class="popular-item">
+            <img src="../images/GROUP 2.jpg">
+            <p>Group B</p>
+        </div>
+        <div class="popular-item">
+            <img src="../images/GROUP 3.jpg">
+            <p>Group C</p>
+        </div>
+    </div>
+    
+    <div class="additional-popular">
+        <div class="popular-item">
+            <img src="../images/GROUP 4.jpg">
+            <p>Group D</p>
+        </div>
+        <div class="popular-item">
+            <img src="../images/GROUP 5.jpg">
+            <p>Group E</p>
+        </div>
+    </div>
+    <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+
+<section class="content">
+        <p>
+            <h3>🌟 Elevate Your Health Journey with Our Comprehensive Health Categories! ✨</h3><br>
+            At our Lab Test services, your health is our foremost priority! We invite you to explore our meticulously curated health categories, each designed to empower and inform you as you navigate your wellness journey. Discover essential diagnostic tests tailored to your individual health needs and take proactive steps towards optimal well-being!<br>
+            <br>
+            <h3>1. Women’s Care & PCOD</h3><br>
+            <b>Price:</b> ₹2000<br>
+            <br>
+            Empower your reproductive health! This category focuses on endocrine balance and includes hormonal profiling and fertility evaluations. Our screenings for conditions like Polycystic Ovary Syndrome (PCOS) enable you to uncover underlying health issues and make informed decisions about your reproductive health. Take charge of your health today!<br>
+            <br>
+            <h3>2. Pregnancy Services, X-Rays & Scans, MRI</h3><br>
+            <h4>Price:</h4><br>
+
+            <b>Pregnancy Test:</b> ₹1000<br>
+            <br>
+            <b>X-Ray:</b> ₹1500<br>
+            <br>
+            <b>MRI:</b> ₹5000<br>
+            <br>
+            Safeguard the health of you and your baby! Our comprehensive obstetric services include crucial prenatal screenings, ultrasound imaging, and advanced diagnostic procedures such as MRIs. We ensure that both maternal and fetal health are closely monitored, allowing for early detection of potential complications. Nurture the life within you with confidence!<br>
+            <br>
+            <h3>3. ECG (Electrocardiogram)</h3><br>
+            <b>Price:</b> ₹800<br>
+            <br>
+            Monitor your cardiovascular health! An ECG is essential for assessing cardiac rhythm and identifying arrhythmias that may signal underlying cardiovascular disease. Early detection through this non-invasive test allows for timely intervention, ensuring your heart remains healthy and robust. Protect your heart—it's the engine of your vitality!<br>
+            <br>
+            <h3>4. Complete Blood Count (CBC)</h3><br>
+            <b>Price:</b> ₹600<br>
+            <br>
+            Gain insights into your hematological health! The Complete Blood Count provides critical information regarding erythrocyte (red blood cell) counts, leukocyte (white blood cell) counts, hemoglobin concentration, and platelet levels. This essential test aids in diagnosing various conditions, including anemia and infections, giving you a clearer picture of your overall health. Illuminate your health status with this vital assessment!<br>
+            <br>
+            <h3>5. Infection-Related Tests</h3><br>
+            <h4>Price:</h4><br>
+            <b>Malaria Test:</b> ₹1200<br>
+            <br>
+            <b>Dengue Test:</b> ₹1500<br>
+            <br>
+            <b>Diarrhea Panel:</b> ₹1300<br>
+            <br>
+            Stay vigilant against infections! Our targeted diagnostic tests for infectious diseases, such as malaria and dengue, are crucial for early identification and management of these potentially life-threatening conditions. Rapid diagnosis leads to prompt treatment, allowing you to reclaim your health swiftly. Don’t let infections compromise your life—act decisively!<br>
+            <br>
+            <h3>Our Commitment to Exceptional Care</h3><br>
+            Experience a transformative approach to healthcare! We emphasize transparency and excellence, providing real-time feedback and continuous support to ensure you and your family receive the highest standard of care. Our mission is to create a seamless healthcare experience that prioritizes your health and well-being.<br>
+            <br>
+            <h3>Why Regular Health Monitoring is Indispensable</h3><br>
+            In our busy lives, it's easy to overlook regular health assessments. However, proactive health monitoring is essential for preventing unforeseen health issues. Our diverse array of tests empowers you to stay informed, facilitating significant lifestyle changes that promote long-term wellness.<br>
+            <br>
+            <h3>Empower Your Health Decisions with Us</h3><br>
+            Our dedicated support team is here to assist you every step of the way! If you have questions about our tests or need guidance in selecting the appropriate services, we are just a call away. Together, we will navigate your health journey, ensuring you have the resources necessary for optimal wellness.<br>
+            <br>
+            <h3>Join Us in Transforming Your Health Experience!</h3><br>
+            Thank you for choosing us as your trusted partner in health. With our comprehensive offerings and unwavering commitment to quality, your health is in capable hands. Let’s embark on a transformative journey towards a proactive and empowered approach to health and wellness.<br>
+            <br>
+            If you have any questions or need assistance, please reach out to our supportive team. Your health matters—let’s take this journey together!<br>
+        </p>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="../images/caregiver logo.png" alt="Caregiver Logo">
+            <p>“Caregiver: Enveloping You in Dazzling Compassionate Care—Dazzling Support 24/7, Always by Your Side.”</p>
+            <div class="social-icons">
+                <img src="../images/fb.png" alt="Facebook">
+                <img src="../images/insta.png" alt="Instagram">
+                <img src="../images/twitter.png" alt="Twitter">
+                <img src="../images/linkdin.png" alt="LinkedIn">
+            </div>
+        </div>
+        <div class="footer-links">
+            <h3><u>Quick Links</u></h3>
+            <a href="#">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Our Team</a>
+            <a href="#">Services</a>
+        </div>
+        <div class="footer-services">
+            <h3><u>Caregiver Service</u></h3>
+            <a href="#">Doctor</a>
+            <a href="#">Nurse</a>
+            <a href="#">Physiotherapist</a>
+            <a href="#">Lab Test</a>
+            <a href="#">Care Taker</a>
+        </div>
+        <div class="footer-contact">
+            <h3><u>Contact info</u></h3>
+            <p><img src="../images/Phone call.png" alt="Phone">+91-1234567890</p>
+            <p><img src="../images/mail.png" alt="Mail">caregiver270@gmail.com</p>
+            <p><img src="../images/Phone call.png" alt="Phone">+033-2569-3125</p>
+            <button>Get Started</button>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy;2024 Caregiver Web Application. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

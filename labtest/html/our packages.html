@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUR PACKAGES</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #1A3636;
+    color: #FFFFFF;
+}
+
+header {
+    width: 100%;
+    background-color: #181717;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+position: relative;
+}
+
+nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #ff4b4b;
+}      
+
+.dropdown:hover .dropdown-menu {
+display: block;
+}
+
+.background-image {
+background: url("../images/lab\ test\ bg\ image.png");
+background-size: cover;
+background-position: center;
+width: 100%;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+}
+
+
+
+
+.background-content h1 {
+    font-size: 48px;
+    text-align: center;
+}
+
+.auth-buttons {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+font-size: 16px;
+color: white;
+background-color: #A02334;
+transition: background-color 0.3s;
+}
+
+button:hover {
+background-color: #ff4d4d;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.dropdown-menu {
+display: none;
+color: #000;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: white;
+border-radius: 5px;
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+z-index: 1;
+}
+
+.dropdown-menu li {
+width: 100%;
+}
+
+.dropdown-menu li a {
+display: block;
+padding: 10px 20px;
+color: black;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+background-color: #ff4b4b;
+background: var(--mainclr);
+transform: scale(1.1);
+border-radius: 20px;
+}
+
+.user-icon {
+font-size: 24px;
+color: #f5f5f5;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.package {
+    padding: 40px 0;
+    background-color: #1A3636;
+    text-align: center;
+    color: #fff;
+}
+
+.package h2 {
+    font-size: 42px;
+    font-family: 'Inter', sans-serif;
+    color: #4158A6;
+    text-shadow: 0px 4px 6px rgba(255, 255, 255, 1);
+}
+
+.package-slider {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.package-item {
+    width: 250px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.package-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.package-item img:hover {
+transform: scale(1.1);
+border-radius: 15px;
+}
+
+.package-item p {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.additional-package {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+/* Carousel */
+.carousel {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+width: 300px; 
+height: 300px; 
+margin: 0 auto;
+overflow: hidden; 
+border-radius: 50%; 
+border: 10px solid #A02334; 
+box-sizing: border-box; 
+}
+
+/* Carousel Images */
+.carousel-images {
+display: flex;
+transition: transform 0.5s ease-in-out;
+width: 100%; 
+}
+
+.carousel-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 50%; 
+flex-shrink: 0; 
+}
+
+/* Carousel Dots */
+.carousel-dots {
+position: absolute;
+bottom: 10px;
+text-align: center;
+width: 100%;
+}
+
+.dot {
+display: inline-block;
+width: 10px;
+height: 10px;
+margin: 0 5px;
+background-color: #394e4a;
+border-radius: 50%;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.dot.active, .dot:hover {
+background-color: #ffffff;
+}
+
+.content {
+    padding: 50px 10%;
+    background-color: #1A3636;
+}
+
+.content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #D3D3D3;
+}
+
+.footer {
+background-color: #1A3636;
+color: white;
+padding: 0px;
+padding-top: 30px;
+}
+
+.footer-container {
+display: flex;
+justify-content: space-between;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+.footer-logo {
+flex: 1;
+margin-bottom: 30px;
+}
+
+.footer-logo img {
+    max-width: 100px;
+}
+
+.social-icons {
+margin-bottom: 10px;
+padding-top: 20px;
+}
+
+.social-icons i {
+margin-right: 10px;
+color: white;
+font-size: 20px;
+cursor: pointer;
+}
+
+.footer-links, .footer-services, .footer-contact {
+flex: 1;
+}
+
+.footer-links h3, .footer-services h3, .footer-contact h3 {
+margin-bottom: 15px;
+}
+
+.footer-links a, .footer-services a, .footer-contact p {
+display: block;
+color: white;
+margin-bottom: 8px;
+text-decoration: none;
+}
+
+.footer-contact button {
+background-color: #A02334;
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.footer-bottom {
+background-color: #A02334;
+padding: 10px 0;
+text-align: center;
+font-size: 14px;
+color: #888;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+.package-slider, .additional-packages {
+flex-wrap: wrap;
+justify-content: center;
+gap: 30px;
+}
+
+.package-item {
+width: 120px;
+height: 120px;
+font-size: 14px;
+}
+
+.packages h2 {
+font-size: 36px;
+}
+
+.carousel-dots {
+margin-top: 10px;
+}
+}
+
+@media (max-width: 768px) {
+header {
+flex-direction: column;
+align-items: flex-start;
+}
+
+nav {
+margin-top: 10px;
+width: 100%;
+flex-direction: column;
+align-items: flex-start;
+}
+
+nav ul {
+flex-direction: column;
+width: 100%;
+padding: 0;
+}
+
+nav ul li {
+margin-bottom: 10px;
+}
+
+.auth-buttons {
+margin-top: 10px;
+flex-direction: column;
+align-items: flex-start;
+}
+
+.background-content h1 {
+font-size: 36px;
+}
+
+.content {
+padding: 20px 5%;
+}
+.footer-logo {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+.logo img {
+width: 80%;
+}
+
+.package-item {
+width: 100px;
+height: 100px;
+font-size: 12px;
+}
+
+.packages h2 {
+font-size: 28px;
+}
+}
+
+@media (min-width: 768px) {
+nav {
+flex-direction: row;
+}
+.content {
+padding: 20px 5%;
+}
+.footer-container {
+flex-direction: row;
+justify-content: space-between;
+max-width: 1200px;
+margin: 0 auto;
+}
+.footer-links, .footer-services, .footer-contact {
+flex: 1;
+text-align: left;
+}
+}
+    </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="../images/../images/../images/caregiver logo.png">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li class="dropdown">
+                <a href="#">Service ▼</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Doctor</a></li>
+                    <li><a href="#">Nurse</a></li>
+                    <li><a href="#">Physiotherapist</a></li>
+                    <li><a href="#">Lab Test</a></li>
+                    <li><a href="#">Care Taker</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <img src="../images/../images/../images/user.png">
+            <button class="sign-up">Sign Up</button>
+            <button class="login"><u>Login</u></button>
+        </div>
+    </nav>
+</header>
+    <div class="background-image">
+        <div class="background-content">
+            <h1> OUR <br> PACKAGE </h1>
+        </div>
+        
+    </div>
+
+    <section class="package">
+        <h2>Our Packages</h2>
+        <div class="package-slider">
+            <div class="package-item">
+                <img src="../images/../images/../images/C 1.jpg">
+                <p>Combo 1</p>
+            </div>
+            <div class="package-item">
+                <img src="../images/../images/../images/C 2.jpg">
+                <p>Combo 2</p>
+            </div>
+            <div class="package-item">
+                <img src="../images/../images/../images/C 3.jpg">
+                <p>Combo 3</p>
+            </div>
+            <div class="package-item">
+                <img src="../images/../images/../images/C 4.jpg">
+                <p>Combo 4</p>
+            </div>
+        </div>
+        
+        <div class="additional-package">
+            <div class="package-item">
+                <img src="../images/../images/../images/C 5.jpg">
+                <p>Combo 5</p>
+            </div>
+            <div class="package-item">
+                <img src="../images/../images/../images/C 6.jpg">
+                <p>Combo 6</p>
+            </div>
+            <div class="package-item">
+                <img src="../images/../images/../images/C 7.jpg">
+                <p>Combo 7</p>
+            </div>
+            <div class="package-item">
+                <img src="../images/../images/../images/C 8.jpg">
+                <p>Combo 8</p>
+            </div>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <section class="content">
+        <p><h3>🌿 Purpose & Customer’s Perspective on Our Health Packages 🌿</h3><br>
+            <h4><b>🌼 Purpose:</b></h4><br>
+            Our health packages are thoughtfully crafted to provide comprehensive, accessible assessments tailored for every stage of life. Each package serves as a vital resource for proactive health management, enabling early detection of potential issues and empowering informed choices. Whether you’re a caring parent, a senior seeking personalized care, or a family pursuing holistic wellness, our offerings are designed to meet your unique health needs with compassion and precision.<br>
+            <br>
+            <h4>🌈 Customer’s Perspective:</h4><br>
+            Customers are delighted by the diverse array of packages we offer, each carefully designed to fit different health journeys. Parents appreciate our 👶 Combo Packs for Newborns to 15 Years, finding peace of mind in ensuring their children receive essential tests and vaccinations during critical growth phases.<br>
+            <br>
+            Seniors value the 👴 Senior Citizens Package, allowing them to choose tests that directly address their health concerns, fostering a sense of empowerment in their healthcare decisions.<br>
+            <br>
+            The 🩺 Full Body Test is a popular choice, known for its thoroughness in providing a complete health snapshot that inspires confidence and reassurance. This package helps individuals stay ahead of potential health issues, offering peace of mind through extensive evaluation.<br>
+            <br>
+            Our 🍬 Diabetes & Liver Tests and 🧬 Thyroid & Uric Acid Tests are seen as essential tools in managing health conditions, providing clarity that helps customers make informed lifestyle choices for long-term well-being.<br>
+            <br>
+            Overall, our customers feel supported and empowered, knowing our packages are designed with their health and well-being in mind. By investing in these thoughtfully curated packages, they embrace a vibrant, healthier future for themselves and their loved ones!</p><br>
+            <br>        
+            <p><h3>🏥 Our Health Packages</h3><br>
+            At our Lab Test services, we are dedicated to providing a wide array of health packages tailored to meet the diverse needs of all age groups. Each package is designed to ensure you and your loved ones receive the comprehensive care you deserve.<br>
+            <br>
+            <h3>👶 Health Packages for Children</h3><br>
+            <h4>Combo Packs for Newborns to 15 Years</h4><br>
+            <b>Price:</b> ₹1500<br>
+            <b>Details:</b> This essential package includes vital blood group tests and vaccinations to support your child's health during critical growth phases, ensuring they receive necessary immunizations to prevent common childhood diseases.<br>
+            <br>
+            <h3>🩺 Comprehensive Health Assessments</h3><br>
+            <h4>Full Body Test</h4><br>
+            <b>Price:</b> ₹5700 (10% Off: ₹5130 during promotional periods)<br>
+            <b>Details:</b> A thorough evaluation of multiple aspects of your health, including organ function and metabolic rates. Regular full body tests help identify potential health issues early, enabling timely intervention.<br>
+            <br>
+            <h3>🍬 Essential Tests for Chronic Conditions</h3><br>
+            <h4>Diabetes & Liver Tests</h4><br>
+            <b>Price:</b> ₹2500<br>
+            <b>Details:</b> Crucial for assessing blood sugar levels and liver function, these tests are key indicators of metabolic health. Early detection can lead to more effective management strategies.<br>
+            <br>
+            <h3>Thyroid & Uric Acid Tests</h3><br>
+            <b>Price:</b> ₹1270<br>
+            <b>Details:</b> This screening monitors thyroid hormone levels and uric acid, essential for maintaining metabolic balance and preventing conditions like hypothyroidism or gout.<br>
+            <br>
+            <h3>👴 Senior Health Packages</h3><br>
+            <h4>Senior Citizens Package (Any 3 Tests)</h4><br>
+            <b>Price:</b> ₹3200<br>
+            <b>Details:</b> Specifically designed to cater to the unique health needs of older adults, this package allows you to choose any three tests that address common health concerns, promoting preventive care through regular monitoring.<br>
+            <br>
+            <h3>❤️ Cardiovascular Health Check</h3><br>
+            <h4>lood Tests with Cholesterol or Lipid Profile</h4><br>
+            <b>Price:</b> ₹1800<br>
+            <b>Details:</b> This essential test evaluates cardiovascular health by assessing cholesterol and triglyceride levels, helping to identify risk factors for heart disease.<br>
+            <br>
+            <h3>📚 Additional Combo Packs</h3><br>
+            <h4>Child Health Combo</h4><br>
+            <b>Includes:</b> Blood group test + Vaccination
+            <b>Price:</b> ₹1500<br>
+            <b>Details:</b> Ensures essential immunizations and health assessments for children up to 15 years, providing comprehensive care for your little ones.<br>
+            <br>
+            <h3>Family Health Combo</h3><br>
+            <b>Includes:</b> Full body test + Diabetes & Liver tests <br>
+            <b>Price:</b> ₹7500 (Discounted from ₹8200)<br>
+            <b>Details:</b> Promotes overall family health through extensive testing, ensuring everyone’s well-being is prioritized.<br>
+            <br>
+            <h3>🌟 Elevate Your Wellness Journey with Us! 🌟</h3><br>
+            Our health packages are designed with your well-being in mind, expertly tailored to cater to all age groups—from newborns to seniors. Each package offers comprehensive care, addressing unique health needs and ensuring that every stage of life is supported. Whether you’re a parent seeking the best for your child, a senior looking for personalized health assessments, or anyone in between, we have the perfect solution for you! 🌈<br>
+            <br>
+            Each package includes essential tests aimed at preventive screenings and chronic condition management. Regular testing is crucial, as it empowers you to stay informed about your health, allowing for proactive management and timely interventions when necessary. 🌿 By investing in these thoughtfully curated packages, you gain peace of mind, knowing that you are taking a proactive approach to your health.<br>
+            <br>
+            ✨ Our commitment to quality is unwavering. Each test is conducted using state-of-the-art technology, ensuring accuracy and reliability in your results. With competitive pricing and promotional discounts, we make prioritizing your wellness both affordable and accessible. 💖<br>
+            <br>
+            Moreover, our dedicated support team is always available to assist you, answer your questions, and guide you in choosing the right package tailored to your specific health journey. We believe that informed choices lead to empowered lives, and we’re here to support you every step of the way. 🌟<br>
+            <br>
+            By choosing our health packages, you’re not just opting for tests; you’re embracing a holistic approach to your health that fosters long-term well-being for you and your loved ones. Invest in your health today and step confidently into a vibrant, healthier future! 🌟✨ Reach out to our support team for personalized assistance and let us help you take the next step towards optimal health.<br>
+            <br>
+            Invest in your health today with the right package tailored for your needs. If you have any questions or need assistance, please don’t hesitate to contact our support team!</p>
+    </section>
+
+<footer>
+  <div class="footer-container">
+      <div class="footer-logo">
+          <img src="../images/../images/../images/caregiver logo.png">
+          <p>“Caregiver: Enveloping You in Dazzling Compassionate Care—Dazzling Support 24/7, Always by Your Side.”</p>
+          <div class="social-icons">
+            <img src="../images/../images/../images/fb.png" alt="Facebook">
+            <img src="../images/../images/../images/insta.png" alt="Instagram">
+            <img src="../images/../images/../images/twitter.png" alt="Twitter">
+            <img src="../images/../images/../images/linkdin.png" alt="LinkedIn">
+        </div>
+      </div>
+      <div class="footer-links">
+          <h3><u>Quick Links</u></h3>
+          <a href="#">About Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Our Team</a>
+          <a href="#">Services</a>
+      </div>
+      <div class="footer-services">
+          <h3><u>Caregiver Service</u></h3>
+          <a href="#">Doctor</a>
+          <a href="#">Nurse</a>
+          <a href="#">Physiotherapist</a>
+          <a href="#">Lab Test</a>
+          <a href="#">Care Taker</a>
+      </div>
+      <div class="footer-contact">
+          <h3><u>Contact info</u></h3>
+          <p><img src="../images/../images/../images/Phone call.png">+91-1234567890</p>
+          <p><img src="../images/../images/../images/mail.png">caregiver270@gmail.com</p>
+          <p><img src="../images/../images/../images/Phone call.png">+033-2569-3125</p>
+          <button>Get Started</button>
+      </div>
+  </div>
+  <div class="footer-bottom">
+      <p>&copy;2024 Caregiver Web Application. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

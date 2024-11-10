@@ -1,3 +1,40 @@
+<?php
+
+// Database connection settings
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "caregiver";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+?>
+
+<?php
+
+// Query to fetch nurses' data
+$sql = "SELECT nid, nname, special, degree, location FROM nurse";
+$result = $conn->query($sql);
+$nurses = array();
+
+if ($result->num_rows > 0) {
+    // Fetch all nurses into an array
+    while ($row = $result->fetch_assoc()) {
+        // $row["nimage"] = base64_encode($row["nimage"]);
+        $nurses[] = $row;
+    }
+}
+
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +44,8 @@
     <title>Nurse</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="./css/Nurse_style.css">
-    <!-- <script>
-       
-    </script> -->
+    <link rel="stylesheet" href="../doctor/css/style.css">
+    <link rel="stylesheet" href="../doctor/css/responsive.css">
 </head>
 
 <body>
@@ -54,175 +90,72 @@
     </div>
 
     <!-- Nurse profile  -->
-                <h2 id="Specialist-head">Specialist Nurse For Your Family</h2>
-    <div class="container">
+    <h2 id="Specialist-head">Specialist Nurse For Your Family</h2>
+    <main>
+    <script>
+        const nurses = <?php echo json_encode($nurses); ?>;
 
-            <div class="dropdown-2">
-                <button class="dropbtn-2">Select type <i class="fa-solid fa-caret-down"></i></button>
-                <div class="dropdown-content-2">
-                    <a href="#staff-nurse">Staff Nurse</a>
-                    <a href="#home-nurse">Home Nurse</a>
-                    <a href="#ot-nurse">OT Nurse</a>
-                    <a href="#icu/ccu-nurse">ICU/CCU Nurse</a>
-                    <a href="#supervisor-nurse">Nursing Supervisor</a>
-                    <a href="#register-nurse">Registered Nurse</a>
-                    <a href="#gnm-nurse">GNM Nurse</a>
-                </div>
-            </div>
+        function filterSpecialty() {
+            const specialty = document.getElementById('options').value;
+            const nurseList = document.querySelector('.doctor-list-wrap .doctors');
+            nurseList.innerHTML = '';
 
-        <div class="scrollable-container">
-         <!-- <div class="nurse-list"> -->
-        <!-- <form action="" method="POST"> -->
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg " alt="Nurse" >
-                
-                <div class="nurse-details">
-                    <h3 name="" class="nurse-name">Tina Roy <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">Staff Nurse</p>
-                    <p class="nurse-qualification">BSC Nursing</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                   <a href="./public/Nurse_Booking.php"><button class="proceed-btn">Proceed</button></a> 
-                </div>
-            </div>
-            
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg" alt="Nurse">
-                <div class="nurse-details">
-                    <h3 class="nurse-name">Awnessa Mondal <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">Home Nurse</p>
-                    <p class="nurse-qualification">Diploma</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                <a href="./public/Nurse_Booking.php"><button class="proceed-btn">Proceed</button></a>
-                </div>
-            </div>
-            
-            <!-- <div class="nurse-list"> -->
-                <div class="nurse-card">
-                    <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                    <div class="nurse-details">
-                        <h3 name="nurse_name" class="nurse-name">Aparna Roy <i class="fa-solid fa-circle"></i></h3>
-                        <p class="nurse-type">OT Nurse</p>
-                        <p class="nurse-qualification">BSN,MSN</p>
-                        <p class="nurse-address">Kolkata</p>
-                    </div>
-                    <div class="actions">
-                        <!-- <button class="visit-btn">Visit</button> -->
-                    <a href="./public/Nurse_Booking.php"><button name="proceed" class="proceed-btn">Proceed</button></a>
-                    </div>
-                </div>
-            <!-- </div> -->
+            const selectedNurses = nurses.filter(nurse => specialty === "" || nurse.special.trim() === specialty);
 
-            <!-- <div class="nurse-list"> -->
-                <div class="nurse-card">
-                    <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                    <div class="nurse-details">
-                        <h3 id="nurseNM" class="nurse-name">Ankita Paul <i class="fa-solid fa-circle"></i></h3>
-                        <p class="nurse-type">ICU/CCU Nurse</p>
-                        <p class="nurse-qualification">BSC Nursing</p>
-                        <p class="nurse-address">Kolkata</p>
+            selectedNurses.forEach(nurse => {
+                const src = nurse.nimage ? 'data:image/jpeg;base64,' + nurse.nimage : './assets/nurse.png';
+                nurseList.innerHTML += `
+                    <div class="list">
+                        <div class="doc">
+                            <div class="image">
+                                <img src="${src}" alt="nurse" />
+                            </div>
+                            <div class="doc-info">
+                                <h3>${nurse.nname}</h3>
+                                <h5>${nurse.special}</h5>
+                                <h5>${nurse.degree}</h5>
+                                <h5>${nurse.location}</h5>
+                            </div>
+                        </div>
+                        <div class="btn">
+                            <button class="outline-button">
+                                <a href="./public/Nurse_Booking.php?nurse_id=${nurse.nid}">Proceed</a>
+                            </button>
+                        </div>
                     </div>
-                    <div class="actions">
-                        <!-- <button class="visit-btn">Visit</button> -->
-                        <a href="./public/Nurse_Booking.php"><button onclick="Nursename()" class="proceed-btn">Proceed</button></a>
-                    </div>
-                </div>
-            <!-- </div> -->
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                <div class="nurse-details">
-                    <h3 class="nurse-name">Shima Das  <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">OT Nurse</p>
-                    <p class="nurse-qualification">BSN</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                <a href="./public/Nurse_Booking.php"> <button onclick="nurseName()" class="proceed-btn">Proceed</button></a>   
-                </div>
-            </div>
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                <div class="nurse-details">
-                    <h3 class="nurse-name">Soumye Ghosh <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">Registered Nurse</p>
-                    <p class="nurse-qualification">HS</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                    <a href="./public/Nurse_Booking.php"><button class="proceed-btn">Proceed</button></a>
-                </div>
-            </div>
+                `;
+            });
+        }
 
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                <div class="nurse-details">
-                    <h3 class="nurse-name">Kamrun Nessa <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">OT Nurse</p>
-                    <p class="nurse-qualification">BSC Nursing</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                    <a href="./public/Nurse_Booking.php"><button class="proceed-btn">Proceed</button></a>
-                </div>
+        document.addEventListener('DOMContentLoaded', () => {
+            filterSpecialty();
+        });
+    </script>
+<section class="sec-gap doctor">
+    <div class="custom-container">
+        <h1>Special Nurses Offline Mode</h1>
+        <div class="doctor-list-wrap">
+            <div class="selector">
+                <label for="options">Select Type:</label>
+                <select id="options" name="options" onchange="filterSpecialty()">
+                    <option value="">All</option>
+                    <option value="Staff Nurse">Staff Nurse</option>
+                    <option value="Home Nurse">Home Nurse</option>
+                    <option value="OT Nurse">OT Nurse</option>
+                    <option value="ICU/CCU Nurse">ICU/CCU Nurse</option>
+                    <option value="Nursing Supervisor">Nursing Supervisor</option>
+                    <option value="Registered Nurse">Registered Nurse</option>
+                    <option value="GNM Nurse">GNM Nurse</option>
+                </select>
             </div>
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                <div class="nurse-details">
-                    <h3 class="nurse-name">Afrin Khatun <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">Home Nurse</p>
-                    <p class="nurse-qualification">BSC Nursing</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                    <a href="./public/Nurse_Booking.php"><button class="proceed-btn">Proceed</button></a>
-                </div>
-            </div>
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                <div class="nurse-details">
-                    <h3 class="nurse-name">Krishna Banerjee <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">Nursing Supervisor</p>
-                    <p class="nurse-qualification">BSC Nursing</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                    <a href="./public/Nurse_Booking.php"><button class="proceed-btn">Proceed</button></a>
-                </div>
-            </div>
-            <div class="nurse-card">
-                <img src="./assests/nurse-1.jpg " alt="Nurse">
-            
-                <div class="nurse-details">
-                    <h3 class="nurse-name">Ms. Jesmin Khatun <i class="fa-solid fa-circle"></i></h3>
-                    <p class="nurse-type">GNM Nurse</p>
-                    <p class="nurse-qualification">HS</p>
-                    <p class="nurse-address">Kolkata</p>
-                </div>
-                <div class="actions">
-                    <!-- <button class="visit-btn">Visit</button> -->
-                    <a href="./public/Nurse_Booking.php"><button class="proceed-btn">Proceed</button></a>
-                </div>
+            <div class="doctors">
+                <!-- Nurse list will be populated here by JavaScript -->
             </div>
         </div>
     </div>
-    <!-- </form> -->
+</section>
+</main>
+
 <hr>
     <!-- Footer -->
 

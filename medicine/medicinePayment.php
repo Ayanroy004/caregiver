@@ -1,3 +1,20 @@
+<?php
+include "config.php";
+
+// SQL query to delete all data from the orders table
+$sql = "DELETE FROM orders";
+
+if ($conn->query($sql) === TRUE) {
+    
+} else {
+    echo "Error deleting orders: " . $conn->error;
+}
+
+$conn->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,7 +61,7 @@
                     <li><a href="#">Physiotherapist</a></li>
                     <li><a href="#">Lab Test</a></li>
                     <li>
-                      <a href="../medicine.html" target="_blank">Medicine</a>
+                      <a href="./medicine.php" target="_blank">Medicine</a>
                     </li>
                   </ul>
                 </li>
@@ -53,31 +70,13 @@
             </div>
 
             <div class="log-sign-btn-wrapper">
+              <a href="./medicineCart.php">
               <div class="user">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="23"
-                  height="27"
-                  viewBox="0 0 23 27"
-                  fill="none"
-                >
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="#B3B3B3"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="white"
-                    stroke-opacity="0.2"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" viewBox="0 0 48 46" fill="none">
+                <path d="M2 2H10L15.36 28.78C15.5429 29.7008 16.0438 30.5279 16.7751 31.1166C17.5064 31.7053 18.4214 32.018 19.36 32H38.8C39.7386 32.018 40.6536 31.7053 41.3849 31.1166C42.1162 30.5279 42.6171 29.7008 42.8 28.78L46 12H12M20 42C20 43.1046 19.1046 44 18 44C16.8954 44 16 43.1046 16 42C16 40.8954 16.8954 40 18 40C19.1046 40 20 40.8954 20 42ZM42 42C42 43.1046 41.1046 44 40 44C38.8954 44 38 43.1046 38 42C38 40.8954 38.8954 40 40 40C41.1046 40 42 40.8954 42 42Z" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
+              </a>
 
               <button>Sign Up</button>
               <button>Login</button>
@@ -104,68 +103,84 @@
     </section>
 
     <section class="sec-gap divider product-cart ">
-      <div class="custom-container">
-        <div class="row">
-          <div class="col-50">
-            <div class="left-sec">
-              <!-- <div class="show-items">
-                <h4>Your Cart :</h4>
-                <h4>Items : 12</h4>
-              </div> -->
-              <div class="payment-form">
-                <!-- UPI Section -->
-                <div class="payment-option">
-                  <div class="wrap">
-                    <input type="radio" id="upi" name="payment" onclick="togglePaymentOption()" />
-                    <label for="upi">UPI</label>
-                  </div>
-                  <div class="input-group" id="upi-input-group">
-                    <label for="upi-id">Enter UPI ID</label>
-                    <input type="text" id="upi-id" placeholder="john.doe@hdfcbank" />
-                  </div>
-                </div>
-              
-                <!-- Card Section -->
-                <div class="payment-option">
-                  <div class="wrap">
-                    <input type="radio" id="card" name="payment" onclick="togglePaymentOption()" />
-                    <label for="card">Card</label>
-                  </div>
-                  <div class="input-group" id="card-input-group">
-                    <label for="card-number">Enter Your Card Number</label>
-                    <input type="text" id="card-number" placeholder="4256-1283-0025" />
-                  </div>
-                  <div class="input-group" id="card-details-group">
-                    <label for="expiry">Valid Date :</label>
-                    <div class="exp-card">
-                      <input type="text" id="expiry-mm" placeholder="MM" />
-                      <input type="text" id="expiry-yy" placeholder="YY" />
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-50">
+                    <div class="left-sec">
+                        <div class="payment-form">
+                            <!-- UPI Section -->
+                            <div class="payment-option">
+                                <div class="wrap">
+                                    <input type="radio" id="upi" name="payment" onclick="togglePaymentOption()" />
+                                    <label for="upi">UPI</label>
+                                </div>
+                                <div class="input-group" id="upi-input-group">
+                                    <label for="upi-id">Enter UPI ID</label>
+                                    <input type="text" id="upi-id" placeholder="john.doe@hdfcbank" />
+                                </div>
+                            </div>
+                          
+                            <!-- Card Section -->
+                            <div class="payment-option">
+                                <div class="wrap">
+                                    <input type="radio" id="card" name="payment" onclick="togglePaymentOption()" />
+                                    <label for="card">Card</label>
+                                </div>
+                                <div class="input-group" id="card-input-group">
+                                    <label for="card-number">Enter Your Card Number</label>
+                                    <input type="text" id="card-number" placeholder="4256-1283-0025" />
+                                </div>
+                                <div class="input-group" id="card-details-group">
+                                    <label for="expiry">Valid Date :</label>
+                                    <div class="exp-card">
+                                        <input type="text" id="expiry-mm" placeholder="MM" />
+                                        <input type="text" id="expiry-yy" placeholder="YY" />
+                                    </div>
+                                    <div class="card-cvv">
+                                        <input type="text" id="cvv" placeholder="CVV" />
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- Cash on Delivery Section -->
+                            <div class="payment-option">
+                                <div class="wrap">
+                                    <input type="radio" id="cod" name="payment" onclick="togglePaymentOption()" />
+                                    <label for="cod">Cash on Delivery</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="btn">
+                            <button id="pay-button" onclick="payAndDeleteOrders()">Pay 7,839</button>
+                        </div>
+                        
                     </div>
-                    <div class="card-cvv">
-                      <input type="text" id="cvv" placeholder="CVV" />
-                    </div>
-                  </div>
                 </div>
-              
-                <!-- Cash on Delivery Section -->
-                <div class="payment-option">
-                  <div class="wrap">
-                    <input type="radio" id="cod" name="payment" onclick="togglePaymentOption()" />
-                    <label for="cod">Cash on Delivery</label>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="btn">
-                <button id="pay-button" disabled><a href="./medicineSucces.html">Pay 7,839</a> </button>
-              </div>
-              
             </div>
-          </div>
-          
         </div>
-      </div>
     </section>
+
+    <script>
+        function togglePaymentOption() {
+            document.getElementById('pay-button').disabled = false;
+        }
+
+        function payAndDeleteOrders() {
+            fetch('delete_orders.php', {
+                method: 'POST',
+            })
+            .then(response => response.text())
+            .then(result => {
+                console.log('Orders deleted:', result);
+                window.location.href = './medicineSucces.php';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
 
     <div class="footer-part">
       <footer>

@@ -44,7 +44,7 @@
                     <li><a href="#">Physiotherapist</a></li>
                     <li><a href="#">Lab Test</a></li>
                     <li>
-                      <a href="../medicine.html" target="_blank">Medicine</a>
+                      <a href="./medicine.php" target="_blank">Medicine</a>
                     </li>
                   </ul>
                 </li>
@@ -53,31 +53,13 @@
             </div>
 
             <div class="log-sign-btn-wrapper">
+              <a href="./medicineCart.php">
               <div class="user">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="23"
-                  height="27"
-                  viewBox="0 0 23 27"
-                  fill="none"
-                >
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="#B3B3B3"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="white"
-                    stroke-opacity="0.2"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" viewBox="0 0 48 46" fill="none">
+                <path d="M2 2H10L15.36 28.78C15.5429 29.7008 16.0438 30.5279 16.7751 31.1166C17.5064 31.7053 18.4214 32.018 19.36 32H38.8C39.7386 32.018 40.6536 31.7053 41.3849 31.1166C42.1162 30.5279 42.6171 29.7008 42.8 28.78L46 12H12M20 42C20 43.1046 19.1046 44 18 44C16.8954 44 16 43.1046 16 42C16 40.8954 16.8954 40 18 40C19.1046 40 20 40.8954 20 42ZM42 42C42 43.1046 41.1046 44 40 44C38.8954 44 38 43.1046 38 42C38 40.8954 38.8954 40 40 40C41.1046 40 42 40.8954 42 42Z" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
+              </a>
 
               <button>Sign Up</button>
               <button>Login</button>
@@ -102,7 +84,7 @@
           Have a good Day !</h3>
       </div>
       <div class="btn">
-        <button>Home</button>
+        <a href="../index.php"><button>Home</button></a> 
       </div>
       </section>
 

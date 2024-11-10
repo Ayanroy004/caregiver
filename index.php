@@ -1,11 +1,11 @@
 <?php
 
-$doctor="";
+$doctor="./Doctor/doctorOnline.html";
 $lab_test="";
 $nurse="./Nurse/nurse.php";
-$take_care="";
+$careTaker="./caretaker/careTakerBook.php";
 $physiotheraphy="";
-$medicine="";
+$medicine="./medicine/medicine.php";
 
 ?>
 
@@ -16,8 +16,8 @@ $medicine="";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CareGiver Home</title>
     <link rel="stylesheet" href="./css/caretaker.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/responsive.css" />
+    <!-- <link rel="stylesheet" href="./css/style.css" /> -->
+    <!-- <link rel="stylesheet" href="./css/responsive.css" /> -->
   </head>
   <body>
     <header>
@@ -29,7 +29,7 @@ $medicine="";
             </div>
 
             <div class="navigation cont">
-              <ul class="first-ul ">
+              <ul class="first-ul">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About Us</a></li>
                 <li class="nav2">
@@ -50,13 +50,19 @@ $medicine="";
                   </div>
 
                   <ul class="effect menu-toggle">
-                    <li><a href="#">Doctor</a></li>
+                    <li><a href="<?php echo $doctor ?>">Doctor</a></li>
                     <li><a href="<?php echo $nurse ?>">Nurse</a></li>
-                    <li><a href="#">Care Taker</a></li>
-                    <li><a href="#">Physiotherapist</a></li>
-                    <li><a href="#">Lab Test</a></li>
+                    <li><a href="<?php echo $careTaker ?>">Care Taker</a></li>
                     <li>
-                      <a href="./medicine.html" target="_blank">Medicine</a>
+                      <a href="<?php echo $physiotheraphy ?>"
+                        >Physiotherapist</a
+                      >
+                    </li>
+                    <li><a href="<?php echo $lab_test ?>">Lab Test</a></li>
+                    <li>
+                      <a href="<?php echo $medicine ?>" target="_blank"
+                        >Medicine</a
+                      >
                     </li>
                   </ul>
                 </li>
@@ -91,8 +97,8 @@ $medicine="";
                 </svg>
               </div>
 
-             <a href="./sign-up/sign-up.php"> <button>Sign Up</button> </a>
-             <a href=""><button>Login</button></a> 
+              <a href="./sign-up/sign-up.php"> <button>Sign Up</button> </a>
+              <a href=""><button>Login</button></a>
               <div class="hamburger">
                 <img src="./assets/menu.png" alt="hamburger" />
                 <img class="none" src="./assets/categories.png" alt="" />
@@ -113,30 +119,33 @@ $medicine="";
           <div><h1>Our Services</h1></div>
           <div class="allcards">
             <div class="cards">
-              <div class="cards-image">
+              <div class="cards-image1">
                 <img src="./assets/doctor card.png" alt="" />
               </div>
-              <p>The Doctor</p>
+              <p>Doctor</p>
             </div>
 
             <div class="cards">
-              <div class="cards-image">
+              <div class="cards-image1">
                 <img src="./assets/nurse card.png" alt="" />
               </div>
               <p>Nurse</p>
             </div>
 
             <div class="cards">
-              <div class="cards-image">
+              <div class="cards-image1">
                 <img src="./assets/physiotherapy card.png" alt="pic" />
               </div>
-              <p>The Doctor</p>
+              <p>Lab Test</p>
             </div>
           </div>
-          <div class="viewall-btn"><button>View all</button></div>
+          <div class="viewall-btn">
+            <a href="./medicine/services.php"><button>View all</button></a>
+            
+          </div>
         </div>
 
-        <div class="three">
+        <div class="three" style="padding-top: 25px">
           <h1>Why Choose Caregiver</h1>
           <div class="hand-tem">
             <div class="handshake">
@@ -148,39 +157,39 @@ $medicine="";
                 <div class="template-pic">
                   <img src="./assets/support-card1.png" alt="pic" />
                 </div>
-                <div><p>24x7 & 12x7 Service available</p></div>
+                <div><p>Your caring companion, 24/7</p></div>
               </div>
 
               <div class="template">
                 <div class="template-pic">
                   <img src="./assets/support-card2.png" alt="pic" />
                 </div>
-                <div><p>24x7 & 12x7 Service available</p></div>
+                <div><p>Bringing care to your fingertips</p></div>
               </div>
 
               <div class="template">
                 <div class="template-pic">
                   <img src="./assets/support-card3.png" alt="pic" />
                 </div>
-                <div><p>24x7 & 12x7 Service available</p></div>
+                <div><p>Your own care partner</p></div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="four">
-          <p>Our Client Review</p>
+          <h1>Our Client Reviews</h1>
           <div class="all-customercart">
             <div class="customer-cart">
               <div class="rating">
-                <img src="./assets/Rating.png" alt="randompic" />
+                <img src="./assets/rating1.png" alt="randompic" />
               </div>
               <div class="text">
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Repellat voluptatum cupiditate doloremque! Repudiandae, odio
-                  quam deleniti veniam animi, natus facili s quaerat enim
-                  corporis, necessitatibus voluptatibus maxime at eum sit ut!
+                  “So easy to use and very helpful!” “As a first-time caregiver,
+                  I was overwhelmed. This app makes it simple to track
+                  medications, appointments, and even my own self-care. It’s
+                  like having a support system in my pocket.”
                 </p>
               </div>
 
@@ -191,37 +200,37 @@ $medicine="";
 
             <div class="customer-cart">
               <div class="rating">
-                <img src="./assets/Rating.png" alt="randompic" />
+                <img src="./assets/rating2.png" alt="randompic" />
               </div>
               <div class="text">
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Repellat voluptatum cupiditate doloremque! Repudiandae, odio
-                  quam deleniti veniam animi, natus facili s quaerat enim
-                  corporis, necessitatibus voluptatibus maxime at eum sit ut!
+                  “A true lifesaver!” “This app has transformed the way I manage
+                  care for my parents. The reminders and scheduling tools keep
+                  me organized, and the support resources have been invaluable.
+                  Highly recommended!🥰”
                 </p>
               </div>
 
               <div class="avatar">
-                <img src="./assets/Avatar Block.png" alt="" />
+                <img src="./assets/Avatar  (3).png" alt="randompic" />
               </div>
             </div>
 
             <div class="customer-cart">
               <div class="rating">
-                <img src="./assets/Rating.png" alt="randompic" />
+                <img src="./assets/rating3.png" alt="randompic" />
               </div>
               <div class="text">
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Repellat voluptatum cupiditate doloremque! Repudiandae, odio
-                  quam deleniti veniam animi, natus facili s quaerat enim
-                  corporis, necessitatibus voluptatibus maxime at eum sit ut!
+                  “Great app for family caregivers❤️!” “I love that I can
+                  coordinate with my siblings in real time through this app. We
+                  can all stay updated on our mom’s care, even from different
+                  cities. Communication has never been easier!”
                 </p>
               </div>
 
               <div class="avatar">
-                <img src="./assets/Avatar Block.png" alt="" />
+                <img src="./assets/Avatar  (2).png" alt="" />
               </div>
             </div>
           </div>
@@ -366,7 +375,9 @@ $medicine="";
                       <a href="" target="_blank" target="_blank">Lab test</a>
                     </li>
                     <li>
-                      <a href="./medicine.html" target="_blank">Medicine</a>
+                      <a href="./medicine/medicine.php" target="_blank"
+                        >Medicine</a
+                      >
                     </li>
                   </ul>
                 </div>
@@ -458,6 +469,5 @@ $medicine="";
       </section>
     </div>
     <script src="./script/index.js"></script>
-
   </body>
 </html>

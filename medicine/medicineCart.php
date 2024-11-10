@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/responsive.css" />
   </head>
   <body>
-  <header>
+    <header>
       <nav>
         <div class="custom-container">
           <div class="wrapper">
