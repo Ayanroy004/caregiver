@@ -53,7 +53,7 @@
     <div class="container" >
         <div class="sign-up-form" id="cont">
         <h1>Welcome To CareGiver Application</h1>
-        <p>Already have an account? <a href="#">Login</a></p>
+        <p>Already have an account? <a href="login.php">Login</a></p>
         <form action="sign-up.php" method="POST">
             <div class="input-box">
             <div class="input-group">
@@ -115,13 +115,13 @@
 	
 <?php
 
-// $pdo = new pdo("mysql:host=localhost;dbname=Caregiver","ashim_04","ashim123");
-// $pdo -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-/*
+$pdo = new pdo("mysql:host=localhost;dbname=caregiver","root","");
+$pdo -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
 if($pdo == TRUE){
 	echo "Connected";
 }
-
+/*
 $sql = "create table if not exists customers(
         ID int NOT NULL AUTO_INCREMENT,
 		first_name VARCHAR(50) NOT NULL,
@@ -135,72 +135,76 @@ $sql = "create table if not exists customers(
 		)";
 $stmt = $pdo -> prepare($sql);
 $stmt -> execute();
+
 */
+if (isset($_POST["submit"])) {
+    // Assign form data to variables with corrected array keys
+    $first_name = $_POST["firstName"];
+    $middle_name = isset($_POST["middleName"]) ? $_POST["middleName"] : null; // Optional field, can be null
+    $last_name = $_POST["lastName"];
+    $mobile_no = $_POST["mobileNo"];
+    $email_id = isset($_POST["email"]) ? $_POST["email"] : null; // Optional field, can be null
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm-password"];
 
+    $encpass = md5($password);
+    $encConpass = md5($confirm_password);
 
-// if (isset($_POST["submit"])) {
-//     // Assign form data to variables with corrected array keys
-//     $first_name = $_POST["firstName"];
-//     $middle_name = isset($_POST["middleName"]) ? $_POST["middleName"] : null; // Optional field, can be null
-//     $last_name = $_POST["lastName"];
-//     $mobile_no = $_POST["mobileNo"];
-//     $email_id = isset($_POST["email"]) ? $_POST["email"] : null; // Optional field, can be null
-//     $password = $_POST["password"];
-//     $confirm_password = $_POST["confirm-password"];
+    $mob_no_length = strlen($mobile_no);
 
-//     $mob_no_length = strlen($mobile_no);
-
-//     if($mob_no_length == 10 && $password == $confirm_password){
-//     // SQL Insert statement
-//     $sql = "INSERT INTO customers (ID,first_name, middle_name, last_name, mobile_no, email_id, password, confirm_password)
-//             VALUES ('',:first_name, :middle_name, :last_name, :mobile_no, :email_id, :password, :confirm_password)";
+    if($mob_no_length == 10 && $password == $confirm_password){
+    // SQL Insert statement
+    $sql = "INSERT INTO customers (ID,first_name, middle_name, last_name, mobile_no, email_id, password, confirm_password)
+            VALUES ('',:first_name, :middle_name, :last_name, :mobile_no, :email_id, :encpass, :encConpass)";
     
-//     // Prepare and execute statement
-//     $stmt = $pdo->prepare($sql);
-//     $stmt->execute([
-//         ':first_name' => $first_name,
-//         ':middle_name' => $middle_name,
-//         ':last_name' => $last_name,
-//         ':mobile_no' => $mobile_no,
-//         ':email_id' => $email_id,
-//         ':password' => $password,
-//         ':confirm_password' => $confirm_password,
-//     ]);
-// // OTP
-// ?>
+    // Prepare and execute statement
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':first_name' => $first_name,
+        ':middle_name' => $middle_name,
+        ':last_name' => $last_name,
+        ':mobile_no' => $mobile_no,
+        ':email_id' => $email_id,
+        ':encpass' => $encpass,
+        ':encConpass' => $encConpass,
+    ]);
+}
+// OTP
+?>
 
-<!-- // <script> -->
-<!-- //     openPopUp(); -->
-<!-- // </script> -->
+ <script>
+    openPopUp(); 
+ </script> 
 
  <?php
-// function generateOTP($length = 6) {
-//     $otp = '';
-//     for ($i = 0; $i < $length; $i++) {
-//         $otp .= mt_rand(0, 9);
-//     }
-//     return $otp;
-// }
+function generateOTP($length = 6) {
+    $otp = '';
+    for ($i = 0; $i < $length; $i++) {
+        $otp .= mt_rand(0, 9);
+    }
+    return $otp;
+}
 
-// $otp = generateOTP();
+$otp = generateOTP();
 
-// $check = mail($email_id,"Caregiver Verificaion","Your OTP is: ".$otp,
-// "From:caregiverindia6@gmail.com");
+$check = mail($email_id,"Caregiver Verificaion","Your OTP is: ".$otp,
+"From:caregiverindia6@gmail.com");
 
-// }
-// else{
+if ($check) {
+    echo "<script>alert('success !');</script>"; 
+    
+}
+else{
 
-//         echo "<script>alert('Please Enter Valid Inputs !');</script>"; 
-// }
+        echo "<script>alert('Please Enter Valid Inputs !');</script>"; 
+}
+
+}
 
 
+die();
 
-
-// die();
-
-// }
- 
-// ?>
+?>
 
 
 	

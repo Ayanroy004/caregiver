@@ -1,10 +1,10 @@
 <?php
 
-$doctor="./Doctor/doctorOnline.html";
-$lab_test="";
-$nurse="./Nurse/nurse.php";
+$doctor="./doctor/index.php";
+$lab_test="./labtest/index.php";
+$nurse="./Nurse/index.php";
 $careTaker="./caretaker/careTakerBook.php";
-$physiotheraphy="";
+$physiotheraphy="./phsio/";
 $medicine="./medicine/medicine.php";
 
 ?>
@@ -98,7 +98,7 @@ $medicine="./medicine/medicine.php";
               </div>
 
               <a href="./sign-up/sign-up.php"> <button>Sign Up</button> </a>
-              <a href=""><button>Login</button></a>
+              <a href="./sign-up/login.php"><button>Login</button></a>
               <div class="hamburger">
                 <img src="./assets/menu.png" alt="hamburger" />
                 <img class="none" src="./assets/categories.png" alt="" />
@@ -111,6 +111,7 @@ $medicine="./medicine/medicine.php";
 
     <main>
       <div class="all">
+        
         <div class="one">
           <img src="./assets/Banner (1).png" alt="banner" />
         </div>

@@ -92,167 +92,84 @@
       </nav>
     </header>
     <main>
-      <div class="all">
-        <div class="one">
-          <div class="banner">
+    <?php
+// Database connection settings
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "caregiver";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to fetch caretaker data
+$sql = "SELECT kid, kname, special, address FROM caretaker";
+$result = $conn->query($sql);
+$caretakers = array();
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Check if image data is not empty and encode to base64
+       
+        $caretakers[] = $row;
+    }
+}
+
+$conn->close();
+?>
+
+<div class="all">
+    <div class="one">
+        <div class="banner">
             <img src="../assets/careTaker-banner.jpg" alt="randompic" />
-          </div>
         </div>
-  
-        <div class="two sec-gap">
-          <div class="head-text"><h1>Specialist Caretaker Booking</h1></div>
-          <div class="types">
+    </div>
+
+    <div class="two sec-gap">
+        <div class="head-text"><h1>Specialist Caretaker Booking</h1></div>
+        <div class="types">
             <div class="select-op">
-              <select id="options" name="selectedOption">
-                <option value="Selects:">Select Type</option>
-                <option value="option1">Child Caretaker</option>
-                <option value="option2">Old age Caretaker</option>
-                <option value="option3">Patient Caretaker</option>
-              </select>
+                <select id="options" name="selectedOption">
+                    <option value="Selects:">Select Type</option>
+                    <option value="option1">Child Caretaker</option>
+                    <option value="option2">Old age Caretaker</option>
+                    <option value="option3">Patient Caretaker</option>
+                </select>
             </div>
             <div class="allCaretakercards">
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
+                <?php foreach ($caretakers as $caretaker): ?>
+                    <div class="caretaker-carts">
+                        <div class="user-detail-btn">
+                            <div class="user">
+                                <img src="../assets/doctor card.png" alt="randompic" />
+                            </div>
+                            <div class="details">
+                                <p style="font-size: 24px;font-weight: bolder;"><?php echo htmlspecialchars($caretaker['kname']); ?></p>
+                                <div class="address1">
+                                    <p><?php echo htmlspecialchars($caretaker['special']); ?>, <?php echo htmlspecialchars($caretaker['address']); ?>, 5 years experience</p>
+                                </div>
+                            </div>
+
+                            <div class="booknow-button-visit">
+                                <div class="booknow-btn">
+                                    <a href="./careTakerPay.php?caretaker_id=<?php echo htmlspecialchars($caretaker['kid']); ?>"><button>Proceed</button></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
-                    </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
-                    </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
-                    </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
-                    </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
-                    </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
-                    </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
-              <div class="caretaker-carts">
-                <div class="user-detail-btn">
-                  <div class="user">
-                    <img src="../assets/care-taker-card.png" alt="randompic" />
-                  </div>
-                  <div class="details">
-                    <p style="font-size: 24px;font-weight: bolder;">Pratik Das</p>
-                    <div class="address1">
-                      <p>Personal Care,PG hospital,Kolkata,5years experiencs</p>
-                    </div>
-                  </div>
-  
-                  <div class="booknow-button-visit">
-                    <div class="booknow-btn"><button>Proceed</button></div>
-                  </div>
-                </div>
-              </div>
+                <?php endforeach; ?>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
     </main>
+
     <div class="footer-part">
       <footer>
         <div class="custom-container">

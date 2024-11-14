@@ -92,7 +92,7 @@ if ($result->num_rows > 0) {
         // Convert the image blob data to base64 encoded string
         $imageData = base64_encode($row["image"]);
         $src = 'data:image/jpeg;base64,' . $imageData;
-
+        
         echo '<a href="./productDetails.php?id=' . $row["id"] . '">
                 <div class="cards">
                     <div class="img-wrap">

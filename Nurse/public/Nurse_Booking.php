@@ -1,6 +1,53 @@
 <?php
-// require '../nurse.php';
+include "../../medicine/config.php";
+
+// Initialize nurse information
+$nurse = null;
+$nurseid = 0;
+
+// Fetch nurse data by ID from URL
+if (isset($_GET['nurse_id'])) {
+    $nurseId = $_GET['nurse_id'];
+    $nurseid = $nurseId;
+    // Query to get nurse data
+    $query = "SELECT nid, nname, special, degree, location FROM nurse WHERE nid = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $nurseId);
+    if (!$stmt->execute()) {
+        die("Execution failed: " . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+
+    // Check if a record is found
+    if ($result->num_rows > 0) {
+        $nurse = $result->fetch_assoc();
+    } else {
+        echo "No nurse found with that ID.";
+    }
+    $stmt->close();
+}
+$conn->close();
 ?>
+
+<script>
+    const nurse = <?php echo json_encode($nurse); ?>;
+    document.addEventListener('DOMContentLoaded', () => {
+        if (nurse) {
+            document.getElementById('nrs').textContent = nurse.nname;
+            document.querySelector('.nurse-type').textContent = nurse.special;
+            document.querySelector('.nurse-qualification').textContent = nurse.degree;
+            document.querySelector('.nurse-address').textContent = nurse.location;
+        }
+
+        // Add event listener to the button
+        document.getElementById('next-page-button').addEventListener('click', () => {
+            window.location.href = `../Payment Gateway/payment.php?nurse_id=${nurse.nid}`;
+        });
+    });
+</script>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -130,34 +177,29 @@
                     <tr>
                         <th>Time</th>
                         <th>Price</th>
-                        <th>Pay</th>
+                        
                     </tr>
                     <tr>
                         <td>10:00am - 10:00pm (12 hrs)</td>
                         <td>₹500</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
+                        <td><input type="radio" id="day1" name="day" value="1"></td>
                     </tr>
                     <tr>
                         <td>10:00pm - 10:00am (12 hrs)</td>
                         <td>₹500</td>
-                       <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
+                        <td><input type="radio" id="day1" name="day" value="1"></td>
+                       
                     </tr>
                     <tr>
                         <td>10:00am - 10:00am (24 hrs)</td>
                         <td>₹900</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
+                        <td><input type="radio" id="day1" name="day" value="1"></td>
                     </tr>
-                    <tr>
-                        <td>10:00pm - 10:00pm (24 hrs)</td>
-                        <td>₹900</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
-                    </tr>
+                    
                     <tr>
                         <td class="book-days">Book Up to 5 days</td>
                     </tr>
                     <tr>
-                        <!-- <td colspan="2"><strong>Total for 5 Days</strong></td>
-                        <td><strong>₹2700</strong></td> -->
                        
                         <td>
                         <input type="radio" id="day1" name="day" value="1">
@@ -172,9 +214,9 @@
                         <label for="day5">5</label>
                         </td>
                         <td> ₹900</td>
-                        <td><a href="../Payment Gateway/index.php"><button class="pay-button">Pay</button></a></td>
                     </tr>
                 </table>
+                <a id="next-page-button"><button class="pay-button">Pay</button></a>
             </div>
         </div>
     

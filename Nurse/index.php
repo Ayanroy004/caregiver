@@ -1,5 +1,5 @@
-<?php
 
+<?php
 // Database connection settings
 $servername = "localhost";
 $username = "root";
@@ -14,19 +14,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-?>
-
-<?php
-
 // Query to fetch nurses' data
-$sql = "SELECT nid, nname, special, degree, location FROM nurse";
+$sql = "SELECT nid, nname, nimage, special, degree, location FROM nurse";
 $result = $conn->query($sql);
 $nurses = array();
 
 if ($result->num_rows > 0) {
-    // Fetch all nurses into an array
     while ($row = $result->fetch_assoc()) {
-        // $row["nimage"] = base64_encode($row["nimage"]);
+        // Check if image data is not empty and encode to base64
+        
         $nurses[] = $row;
     }
 }
@@ -34,20 +30,17 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nurse</title>
+    <title>Special Nurses Offline Mode</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="./css/Nurse_style.css">
     <link rel="stylesheet" href="../doctor/css/style.css">
     <link rel="stylesheet" href="../doctor/css/responsive.css">
 </head>
-
 <body>
     <div class="navbar">
         <!-- Logo -->
@@ -69,9 +62,8 @@ $conn->close();
                     <a href="#labtest">Lab test</a>
                     <a href="#nurse">Nurse</a>
                     <a href="#takecare">Take care</a>
-                    <a href="#physiotheraphy">Physiotheraphy</a>
-                    <a href="#medicine">Modicine</a>
-
+                    <a href="#physiotheraphy">Physiotherapy</a>
+                    <a href="#medicine">Medicine</a>
                 </div>
             </div>
             <a href="#contact">Contact Us</a>
@@ -92,69 +84,50 @@ $conn->close();
     <!-- Nurse profile  -->
     <h2 id="Specialist-head">Specialist Nurse For Your Family</h2>
     <main>
-    <script>
-        const nurses = <?php echo json_encode($nurses); ?>;
-
-        function filterSpecialty() {
-            const specialty = document.getElementById('options').value;
-            const nurseList = document.querySelector('.doctor-list-wrap .doctors');
-            nurseList.innerHTML = '';
-
-            const selectedNurses = nurses.filter(nurse => specialty === "" || nurse.special.trim() === specialty);
-
-            selectedNurses.forEach(nurse => {
-                const src = nurse.nimage ? 'data:image/jpeg;base64,' + nurse.nimage : './assets/nurse.png';
-                nurseList.innerHTML += `
-                    <div class="list">
-                        <div class="doc">
-                            <div class="image">
-                                <img src="${src}" alt="nurse" />
-                            </div>
-                            <div class="doc-info">
-                                <h3>${nurse.nname}</h3>
-                                <h5>${nurse.special}</h5>
-                                <h5>${nurse.degree}</h5>
-                                <h5>${nurse.location}</h5>
-                            </div>
-                        </div>
-                        <div class="btn">
-                            <button class="outline-button">
-                                <a href="./public/Nurse_Booking.php?nurse_id=${nurse.nid}">Proceed</a>
-                            </button>
-                        </div>
+        <section class="sec-gap doctor">
+            <div class="custom-container">
+                <h1>Special Nurses Offline Mode</h1>
+                <div class="doctor-list-wrap">
+                    <div class="selector">
+                        <label for="options">Select Type:</label>
+                        <select id="options" name="options" onchange="this.form.submit()">
+                            <option value="">All</option>
+                            <option value="Staff Nurse">Staff Nurse</option>
+                            <option value="Home Nurse">Home Nurse</option>
+                            <option value="OT Nurse">OT Nurse</option>
+                            <option value="ICU/CCU Nurse">ICU/CCU Nurse</option>
+                            <option value="Nursing Supervisor">Nursing Supervisor</option>
+                            <option value="Registered Nurse">Registered Nurse</option>
+                            <option value="GNM Nurse">GNM Nurse</option>
+                        </select>
                     </div>
-                `;
-            });
-        }
+                    <div class="doctors">
+                        <?php foreach ($nurses as $nurse): ?>
+                            <div class="list">
+                                <div class="doc">
+                                    <div class="image">
+                                        <img src="./assests/nurse-1.jpg" alt="nurse" />
+                                    </div>
+                                    <div class="doc-info">
+                                        <h3><?php echo htmlspecialchars($nurse['nname']); ?></h3>
+                                        <h5><?php echo htmlspecialchars($nurse['special']); ?></h5>
+                                        <h5><?php echo htmlspecialchars($nurse['degree']); ?></h5>
+                                        <h5><?php echo htmlspecialchars($nurse['location']); ?></h5>
+                                    </div>
+                                </div>
+                                <div class="btn">
+                                    <button class="outline-button">
+                                        <a href="./public/Nurse_Booking.php?nurse_id=<?php echo htmlspecialchars($nurse['nid']); ?>">Proceed</a>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            filterSpecialty();
-        });
-    </script>
-<section class="sec-gap doctor">
-    <div class="custom-container">
-        <h1>Special Nurses Offline Mode</h1>
-        <div class="doctor-list-wrap">
-            <div class="selector">
-                <label for="options">Select Type:</label>
-                <select id="options" name="options" onchange="filterSpecialty()">
-                    <option value="">All</option>
-                    <option value="Staff Nurse">Staff Nurse</option>
-                    <option value="Home Nurse">Home Nurse</option>
-                    <option value="OT Nurse">OT Nurse</option>
-                    <option value="ICU/CCU Nurse">ICU/CCU Nurse</option>
-                    <option value="Nursing Supervisor">Nursing Supervisor</option>
-                    <option value="Registered Nurse">Registered Nurse</option>
-                    <option value="GNM Nurse">GNM Nurse</option>
-                </select>
-            </div>
-            <div class="doctors">
-                <!-- Nurse list will be populated here by JavaScript -->
-            </div>
-        </div>
-    </div>
-</section>
-</main>
 
 <hr>
     <!-- Footer -->

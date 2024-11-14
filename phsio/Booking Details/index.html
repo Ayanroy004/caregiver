@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor-detail</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <div class="logo">
+                <img src="./assets/company_logo.png" alt="company_logo.png">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <img src="assets/user.png" alt="user.png">
+                <button class="sign-up">Sign Up</button>
+                <button class="login">Login</button>
+            </div>
+        </header>
+        <div class="main_image-container">
+            <main>
+                <section class="hero">
+                    <img src="assets/main_image.png" alt="Physiotherapist Coaching">
+                </section>
+            </main>
+            <!--background image-->
+            <section class="title-section">
+                <h1>Booking</h1>
+            </section>
+        </div>
+    </div>
+    <div class="wrapper">
+
+        <div class="container">
+            <div class="form-group"> <label for="name">Enter Name :</label> <input type="text" id="name"
+                    placeholder="Enter Your Full Name"> </div>
+            <div class="form-group"> <label for="mobile">Mobile No :</label> <input type="text" id="mobile"
+                    placeholder="Enter Your mobile no"> </div>
+            <div class="form-group"> <label for="city">City / Town :</label> <input type="text" id="city"
+                    placeholder="City / District / Town"> </div>
+            <div class="form-group"> <label for="alt-number">Enter Alternative number :</label> <input type="text"
+                    id="alt-number" placeholder="Enter number (Optional)"> </div>
+            <div class="form-group"> <label for="pincode">Pincode :</label> <input type="text" id="pincode"
+                    placeholder="Enter Pincode"> </div>
+
+            <div class="form-group"> <label for="address">Address :</label> <input type="text" id="address"
+                    placeholder="Enter Your Full Address"> </div>
+            <div class="form-group"> <label for="state">State :</label> <select id="state">
+                    <option value="">Select State</option> <!-- Add state options here -->
+                </select> </div>
+            <div class="form-group"> <label for="start-date">Start date :</label> <input type="text" id="start-date"
+                    placeholder="DD / MM / YY"> </div>
+            <div class="form-group"> <label for="end-date">End Date :</label> <input type="text" id="end-date"
+                    class="w-100" placeholder="DD / MM / YY"> </div>
+        </div>
+
+        <div class="calendar-container">
+            <div>
+                <h2 class="bold">Pick Date</h2>
+                <div id="calendar">
+
+                </div>
+            </div>
+
+            <div>
+                <h3 class="bold">Afternoon</h3>
+                <div id="afternoon-slots" class="time-slots"></div>
+                <h3 class="bold">Morning</h3>
+                <div id="morning-slots" class="time-slots"></div>
+                <h3 class="bold">Evening</h3>
+                <div id="evening-slots" class="time-slots"></div>
+                <hr>
+            </div>
+            <div class="para-container" id="para-container">
+                <h3 class="bold center">Rules</h3>
+
+
+                <p class="w-200">Physiotherapy involves exercises, manual therapy, and education to restore movement and
+                    function. Always follow your therapist's instructions, avoid overexertion, perform exercises
+                    regularly, and maintain proper posture. Warm up before activities, cool down afterward, and
+                    communicate any discomfort. Rest when needed and stay consistent for effective recovery. </p>
+                
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./script/script.js"></script>
+
+    <footer class="footer">
+        <div class="logo-description">
+            <img src="assets/company_logo.png" alt="CareGiver Logo">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis facilis, nemo expedita, placeat
+                nesciunt repellat laudantium incidunt velit amet sint reiciendis, hic at quam.</p>
+
+            <div class="social-icons">
+                <a href="#">
+                    <img src="assets/fb.png" alt="Facebook">
+                </a>
+                <a href="#">
+                    <img src="assets/insta.png" alt="Instagram">
+                </a>
+                <a href="#"><img src="assets/twitter.png" alt="Twitter">
+                </a> <a href="#">
+                    <img src="assets/linkdin.png" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+        <div class="quick-links">
+            <h3 class="BOULD-3">Quick Links</h3>
+            <a href="#">About Us</a> <br><br>
+            <a href="#">Privacy Policy</a><br>
+            <br><a href="#">Terms & Condition</a><br><br>
+            <a href="#">Our Team</a><br><br>
+            <a href="#">Services</a>
+        </div>
+        <div class="caregiver-service">
+            <h3 class="BOULD-3">Caregiver Service</h3>
+            <a href="#">Doctor</a> <br><br>
+            <a href="#">Nurse</a> <br><br>
+            <a href="#">Physiotherapist</a> <br><br>
+            <a href="#">Lab Test</a> <br><br>
+            <a href="#">Care Taker</a>
+        </div>
+        <div class="contact-info">
+            <h3 class="BOULD-3">Contact info</h3>
+            <p>📞 +91-1234567890</p>
+            <p>✉️ caregiver270@gmail.com</p>
+            <p>📞 +033-2569-3125</p> <a href="#" class="get-started">Get Started</a>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        <p>© 2024 Caregiver Web Application. All rights reserved.</p>
+    </div>
+
+</body>
+
+</html>

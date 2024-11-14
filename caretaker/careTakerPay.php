@@ -1,3 +1,35 @@
+<?php
+include "../medicine/config.php";
+
+// Initialize caretaker information
+$caretaker = null;
+
+// Fetch caretaker data by ID from URL
+if (isset($_GET['caretaker_id'])) {
+    $caretakerId = $_GET['caretaker_id'];
+
+    // Query to get caretaker data
+    $query = "SELECT kname, special, address FROM caretaker WHERE kid = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $caretakerId);
+    if (!$stmt->execute()) {
+        die("Execution failed: " . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+
+    // Check if a record is found
+    if ($result->num_rows > 0) {
+        $caretaker = $result->fetch_assoc();
+        // Encode image data to base64 if it exists
+        
+    $stmt->close();
+}
+}
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,16 +138,21 @@
         <div class="two book">
             <div class="booking-heading"><h1>Booking</h1></div>
             <div class="fullbooking-option">
-               
-                        <div class="profile">
-                                    
-                            <div><img src="../assets/profile pic.png" alt="random pic"></div> 
-                                 <div class="details"><p style="font-size: 28px;font-weight: bolder;">Shima Das</p>
-                                    <p style="font-size: 20px;">Personal Caretaker,<br>PG hospital,kolkata</p>
-                                </div> 
-                                    
-                                    
-                         </div>
+
+
+<div class="profile">
+    <div><img src="../assets/doctor card.png" alt="Caretaker Image"></div>
+    <div class="details">
+        <p style="font-size: 28px;font-weight: bolder;"><?php echo htmlspecialchars($caretaker['kname']); ?></p>
+        <p style="font-size: 20px;">
+            <?php echo htmlspecialchars($caretaker['special']); ?>,<br>
+            <?php echo htmlspecialchars($caretaker['address']); ?>,<br>
+           5 years experience
+        </p>
+    </div>
+</div>
+
+
                         
                   
     
@@ -177,13 +214,7 @@
                             </div>
                         </div>
                 </div>
-                            
-    
-                        
-                                
-    
-    
-    
+
                                 <div class="timming">
                                     <div style="text-align: left; font-size: 26px; font-weight: bolder;padding-left:15px;"><p>Schedule</p></div>
                                     <div class="tpp">
@@ -199,18 +230,13 @@
                                             <div><p>500 RS</p></div>
                                             <div><p>500 RS</p></div>      
                                         </div>
-                                        <div style="padding-right: 20px; "><p>Pay</p>
-                                            <div><button style="background-color: cyan; font-size: 26px;border-radius: 8px; margin-bottom: 12px;">Pay</button></div>
-                                            <div><button style="background-color: cyan; font-size: 26px;border-radius: 8px; margin-bottom: 15px;">Pay</button></div>
-                                            <div><button style="background-color: cyan; font-size: 26px;border-radius: 8px; margin-bottom: 15px;">Pay</button></div>
-                                            <div><button style="background-color: cyan; font-size: 26px;border-radius: 8px;">Pay</button></div>
-                                        </div>
+                                        
                                     </div>
                                     <div class="fiveday-book">
                                         <div><p style="font-size: 20px; text-align: left;  font-weight: bold;">Book  up to 5 days</p></div>
                                                 <div class="book-scale">
                                                         <div class="flx-btn">
-                                                        <form>
+                                                        <form action="payment.php" method="GET">
                                                             <label>
                                                                 <input type="radio" name="time" value="one">
                                                                 1
@@ -234,8 +260,11 @@
                                                                 <input type="radio" name="time" value="five">
                                                                 5
                                                             </label>
-                                                           
-                                                        </form>                 
+                                                            
+    <input type="hidden" name="caretaker_id" value="<?php echo htmlspecialchars($caretakerId); ?>">
+    <button type="submit" style="font-size: 26px;background-color: cyan;border-radius: 8px; padding: 7px; margin-left: 20px;margin-right: 10px;">Pay</button>
+</form>
+            
                                                                                                 
     
     
@@ -246,10 +275,8 @@
                                                 </div>
     
     
-                                                <div class="pay-amt">
-                                                    <div style="padding-right: 40px;padding-bottom: 20px;"><p style="font-weight: bolder;font-size: 20px;">900 Rs</p></div> 
                                                      
-                                                    <div> <button type="submit" style="font-size: 26px;background-color: cyan;border-radius: 8px; padding: 7px; margin-left: 20px;margin-right: 10px; ">Pay</button></div></div>
+                                                    
     
     
                                     </div>

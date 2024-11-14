@@ -1,0 +1,285 @@
+:root {
+  --primaryColour: #10BFD9;
+  --secondaryColour: #A02334;
+  --bgColour: #1A3636F7;
+  --bgColour2: #1A3636;
+  --bgForm: #32443D;
+  --headerBlack: #181717ED;
+  --orange: #F04D23;
+  --grey: #4A5660;
+  --inputBoxColour: #D9D9D9;
+  --red: #FC2F2F;
+  --green: #0FBE0F;
+}
+
+
+
+
+
+/* General styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #181717;
+  padding: 20px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10;
+}
+
+.logo span {
+  color: white;
+  font-size: 24px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  background: #ae0d0d;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+}
+
+.user-actions img {
+  height: 40px;
+  margin-right: 15px;
+}
+
+.user-actions img:hover {
+  background: #fdfbfb;
+
+}
+
+button {
+  background-color: #e82721;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 32px;
+  min-width: 100px;
+
+}
+
+button:hover {
+  background-color: #c1cb72;
+}
+
+.main-container {
+  background-color: #21454b;
+
+}
+
+
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  background-color: #f9f9f9;
+}
+
+.hero img {
+  width: 100%;
+  height: 670px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-container {
+  background-color: #21454b;
+
+}
+
+.title-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  background-color: #21454b;
+  /* Dark background color */
+}
+
+.title-section h1 {
+  font-size: 2em;
+  color: white;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  /* Outline effect */
+  font-weight: bold;
+}
+
+
+.card-wrapper {
+  background-color: var(--bgForm);
+  padding: 26px 12px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  /* gap: 13px; */
+  border-radius: 32px;
+  width: 1263px;
+  height: 1219;
+}
+
+.profile-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  margin: 34px auto;
+  background-color: rgb(217, 214, 214);
+}
+
+.profile-card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.profile-details {
+  flex-grow: 1;
+}
+
+.profile-details h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.profile-details p {
+  margin: 5px 0;
+}
+
+.visit-fee {
+  text-align: right;
+}
+
+.visit-fee p {
+  margin: 5px 0;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.book-now {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius:
+    5px;
+  cursor: pointer;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.footer {
+  background-color: #1a3b3b;
+  color: white;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+
+
+.footer div {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.footer h3 {
+  margin-bottom: 15px;
+}
+
+.footer p,
+.footer a {
+  color: white;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .social-icons a {
+  margin: 10px 10px;
+  display: inline-block;
+}
+
+.footer .social-icons img {
+  width: 50px;
+  height: 50px;
+}
+
+.footer .contact-info p {
+  margin: 15px 15px;
+}
+
+.footer .contact-info .get-started {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #b33a3a;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  
+}
+
+.footer .contact-info .get-started:hover {
+  background-color: #a32a2a;
+}
+
+.footer-bottom {
+  background-color: #b33a3a;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  
+}
