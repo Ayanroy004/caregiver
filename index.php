@@ -31,7 +31,7 @@ $medicine="./medicine/medicine.php";
             <div class="navigation cont">
               <ul class="first-ul">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="./aboutus.php">About Us</a></li>
                 <li class="nav2">
                   <div class="wrap">
                     <p class="service">Services</p>
@@ -350,11 +350,11 @@ $medicine="./medicine/medicine.php";
                   <h5>Quick Links</h5>
                   <ul>
                     <li>
-                      <a href="" target="_blank" target="_blank">About Us</a>
+                      <a href="./aboutus.php" target="_blank" target="_blank">About Us</a>
                     </li>
-                    <li><a href="" target="_blank">Privacy Policy</a></li>
-                    <li><a href="" target="_blank">Terms & Condition </a></li>
-                    <li><a href="" target="_blank">Services</a></li>
+                    <li><a href="./doctor/privacyPolicy.php" target="_blank">Privacy Policy</a></li>
+                    <li><a href="./doctor/termscondition.php" target="_blank">Terms & Condition </a></li>
+                    <li><a href="./medicine/services.php" target="_blank">Services</a></li>
                   </ul>
                 </div>
 
@@ -362,18 +362,18 @@ $medicine="./medicine/medicine.php";
                   <h5>CareGiver Services</h5>
                   <ul>
                     <li>
-                      <a href="" target="_blank" target="_blank">Doctor</a>
+                      <a href="./doctor/index.php" target="_blank" target="_blank">Doctor</a>
                     </li>
                     <li>
-                      <a href="" target="_blank" target="_blank">Nurse</a>
+                      <a href="./Nurse/index.php" target="_blank" target="_blank">Nurse</a>
                     </li>
                     <li>
-                      <a href="" target="_blank" target="_blank"
+                      <a href="./phsio/CareGiver application" target="_blank" target="_blank"
                         >Physiotherapist
                       </a>
                     </li>
                     <li>
-                      <a href="" target="_blank" target="_blank">Lab test</a>
+                      <a href="./labtest/index.php" target="_blank" target="_blank">Lab test</a>
                     </li>
                     <li>
                       <a href="./medicine/medicine.php" target="_blank"
