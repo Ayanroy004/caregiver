@@ -53,17 +53,17 @@ $conn->close();
 
         <!-- Center Links -->
         <div class="center-links">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
+            <a href="../index.php">Home</a>
+            <a href="../aboutus.php">About Us</a>
             <div class="dropdown">
                 <button class="dropbtn">Service <i class="fa-solid fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#doctor">Doctor</a>
-                    <a href="#labtest">Lab test</a>
-                    <a href="#nurse">Nurse</a>
-                    <a href="#takecare">Take care</a>
-                    <a href="#physiotheraphy">Physiotherapy</a>
-                    <a href="#medicine">Medicine</a>
+                    <a href="../doctor/index.php">Doctor</a>
+                    <a href="../labtest/index.php">Lab test</a>
+                    <a href="../Nurse/index.php">Nurse</a>
+                    <a href="../caretaker/careTakerBook.php">Take care</a>
+                    <a href="../phsio/CareGiver application">Physiotherapy</a>
+                    <a href="../medicine/medicine.php">Medicine</a>
                 </div>
             </div>
             <a href="#contact">Contact Us</a>
@@ -148,21 +148,21 @@ $conn->close();
             <div class="footer-section">
                 <h3 class="ftr-header">Quick Links</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Condition</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="../aboutus.php">About Us</a></li>
+                    <li><a href="../doctor/privacyPolicy.php">Privacy Policy</a></li>
+                    <li><a href="../doctor/termscondition.php">Terms & Condition</a></li>
+                    <li><a href="../medicine/services.php">Services</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3 class="ftr-header">Caregiver Service</h3>
                 <ul>
-                    <li><a href="#">Doctor</a></li>
-                    <li><a href="#">Nurse</a></li>
-                    <li><a href="#">Physiotherapist</a></li>
-                    <li><a href="#">Lab Test</a></li>
-                    <li><a href="#">Care Taker</a></li>
-                    <li><a href="#">Medicine</a></li>
+                    <li><a href="../doctor/index.php">Doctor</a></li>
+                    <li><a href="../Nurse/index.php">Nurse</a></li>
+                    <li><a href="../phsio/CareGiver application">Physiotherapist</a></li>
+                    <li><a href="../labtest/index.php">Lab Test</a></li>
+                    <li><a href="../caretaker/careTakerBook.php">Care Taker</a></li>
+                    <li><a href="../medicine/medicine.php">Medicine</a></li>
                 </ul>
             </div>
             <div class="footer-section">

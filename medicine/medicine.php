@@ -18,7 +18,7 @@
     <title>Medicine | Types</title>
   </head>
   <body>
-  <header>
+    <header>
       <nav>
         <div class="custom-container">
           <div class="wrapper">
@@ -28,8 +28,8 @@
 
             <div class="navigation cont">
               <ul class="first-ul ">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../aboutus.php">About Us</a></li>
                 <li class="nav2">
                   <div class="wrap">
                     <p class="service">Services</p>
@@ -48,11 +48,11 @@
                   </div>
 
                   <ul class="effect menu-toggle">
-                    <li><a href="#">Doctor</a></li>
-                    <li><a href="#">Nurse</a></li>
-                    <li><a href="#">Care Taker</a></li>
-                    <li><a href="#">Physiotherapist</a></li>
-                    <li><a href="#">Lab Test</a></li>
+                    <li><a href="../doctor/index.php">Doctor</a></li>
+                    <li><a href="../Nurse/index.php">Nurse</a></li>
+                    <li><a href="../caretaker/careTakerBook.php">Care Taker</a></li>
+                    <li><a href="../phsio/CareGiver application">Physiotherapist</a></li>
+                    <li><a href="../labtest/index.php">Lab Test</a></li>
                     <li>
                       <a href="./medicine.php" target="_blank">Medicine</a>
                     </li>
@@ -278,11 +278,11 @@
                   <h5>Quick Links</h5>
                   <ul>
                     <li>
-                      <a href="" target="_blank" target="_blank">About Us</a>
+                      <a href="../aboutus.php" target="_blank" target="_blank">About Us</a>
                     </li>
-                    <li><a href="" target="_blank">Privacy Policy</a></li>
-                    <li><a href="" target="_blank">Terms & Condition </a></li>
-                    <li><a href="" target="_blank">Services</a></li>
+                    <li><a href="../doctor/privacyPolicy.php" target="_blank">Privacy Policy</a></li>
+                    <li><a href="../doctor/termscondition.php" target="_blank">Terms & Condition </a></li>
+                    <li><a href="./services.php" target="_blank">Services</a></li>
                   </ul>
                 </div>
 
@@ -290,21 +290,21 @@
                   <h5>CareGiver Services</h5>
                   <ul>
                     <li>
-                      <a href="" target="_blank" target="_blank">Doctor</a>
+                      <a href="../doctor/index.php" target="_blank" target="_blank">Doctor</a>
                     </li>
                     <li>
-                      <a href="" target="_blank" target="_blank">Nurse</a>
+                      <a href="../Nurse/index.php" target="_blank" target="_blank">Nurse</a>
                     </li>
                     <li>
-                      <a href="" target="_blank" target="_blank"
+                      <a href="../phsio/CareGiver application" target="_blank" target="_blank"
                         >Physiotherapist
                       </a>
                     </li>
                     <li>
-                      <a href="" target="_blank" target="_blank">Lab test</a>
+                      <a href="../labtest/index.php" target="_blank" target="_blank">Lab test</a>
                     </li>
                     <li>
-                      <a href="../medicine.html" target="_blank">Medicine</a>
+                      <a href="./medicine.php" target="_blank">Medicine</a>
                     </li>
                   </ul>
                 </div>
