@@ -40,6 +40,7 @@ $conn->close();
     <link rel="stylesheet" href="./css/Nurse_style.css">
     <link rel="stylesheet" href="../doctor/css/style.css">
     <link rel="stylesheet" href="../doctor/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="navbar">
@@ -53,7 +54,7 @@ $conn->close();
 
         <!-- Center Links -->
         <div class="center-links">
-            <a href="../index.php">Home</a>
+            <a href="../main.php">Home</a>
             <a href="../aboutus.php">About Us</a>
             <div class="dropdown">
                 <button class="dropbtn">Service <i class="fa-solid fa-caret-down"></i></button>
@@ -71,9 +72,7 @@ $conn->close();
 
         <!-- Right Section -->
         <div class="right-section">
-            <a href="#user"><i class="fa-solid fa-user"></i></a>
-            <a href="../sign-up/sign-up.html" class="button signup">Sign Up</a>
-            <a href="#login" class="button login">Login</a>
+        <a href="../sign-up/login.php"><button><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
         </div>
     </div>
 

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOMEPAGE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
         * {
     margin: 0;
     padding: 0;
@@ -736,28 +737,26 @@ text-align: left;
 <body>
   <header>
     <div class="logo">
-        <img src="../images/caregiver logo.png">
+        <img src="../labtest/images/caregiver logo.png">
     </div>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="../main.php">Home</a></li>
+            <li><a href="../aboutus.php">About Us</a></li>
             <li class="dropdown">
                 <a href="#">Service ▼</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Doctor</a></li>
-                    <li><a href="#">Nurse</a></li>
-                    <li><a href="#">Physiotherapist</a></li>
-                    <li><a href="#">Lab Test</a></li>
-                    <li><a href="#">Care Taker</a></li>
+                    <li><a href="../doctor/index.php">Doctor</a></li>
+                    <li><a href="../Nurse/index.php">Nurse</a></li>
+                    <li><a href="../phsio/CareGiver application">Physiotherapist</a></li>
+                    <li><a href="../labtest/index.php">Lab Test</a></li>
+                    <li><a href="../caretaker/careTakerBook.php">Care Taker</a></li>
                 </ul>
             </li>
             <li><a href="#">Contact Us</a></li>
         </ul>
         <div class="auth-buttons">
-            <img src="../images/user.png">
-            <button class="sign-up">Sign Up</button>
-            <button class="login"><u>Login</u></button>
+        <a href="../sign-up/login.php"><button><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
         </div>
     </nav>
 </header>
@@ -798,7 +797,7 @@ text-align: left;
         <h2>Our Special Packages</h2>
         <p class="subtitle">We offer a variety of tailored packages to meet your unique needs.</p>
         <div class="button-container">
-            <a href="#" class="package-button">See All Packages</a>
+            <a href="../labtest/html/our packages.html" class="package-button">See All Packages</a>
         </div>
         <div class="package-cards">
             <div class="package-card">
@@ -823,7 +822,7 @@ text-align: left;
         <h2>Our Popular Categories</h2>
         <p class="subtitle">Explore a variety of categories that match your interests and needs.</p>
         <div class="button-container">
-            <a href="#" class="package-button">See All Categories</a>
+            <a href="../labtest/html/popular categories.html" class="package-button">See All Categories</a>
         </div>
         <div class="popular-cards">
             <div class="popular-card">
@@ -848,27 +847,27 @@ text-align: left;
         <h2>Our Gallery</h2>
         <div class="main-gallery">
             <div class="inner-gallery">
-                <img src="../images/g1.jpg">
+                <img src="../labtest/images/g1.jpg">
             </div>
             <div class="inner-gallery">
-                <img src="../images/g2.jpg">
+                <img src="../labtest/images/g2.jpg">
             </div>
             <div class="inner-gallery">
-                <img src="../images/g3.jpg">
+                <img src="../labtest/images/g3.jpg">
             </div>
             <div class="inner-gallery">
-                <img src="../images/g4.jpg">
+                <img src="../labtest/images/g4.jpg">
             </div>
             <div class="inner-gallery">
-                <img src="../images/g5.jpg">
+                <img src="../labtest/images/g5.jpg">
             </div>
             <div class="inner-gallery">
-                <img src="../images/g6.jpg">
+                <img src="../labtest/images/g6.jpg">
             </div>
         </div>
         <!-- The "See All Photos" button placed after the gallery -->
         <div class="right-gallery-content">
-            <a href="#" class="gallery-button">See All Photos</a>
+            <a href="../labtest/html/gallery.html" class="gallery-button">See All Photos</a>
         </div>
     </div>    
 
@@ -915,13 +914,13 @@ text-align: left;
 <footer>
   <div class="footer-container">
       <div class="footer-logo">
-          <img src="../images/caregiver logo.png">
+          <img src="../labtest/images/caregiver logo.png">
           <p>“Caregiver: Enveloping You in Dazzling Compassionate Care—Dazzling Support 24/7, Always by Your Side.”</p>
           <div class="social-icons">
-            <img src="../images/fb.png" alt="Facebook">
-            <img src="../images/insta.png" alt="Instagram">
-            <img src="../images/twitter.png" alt="Twitter">
-            <img src="../images/linkdin.png" alt="LinkedIn">
+            <img src="../labtest/images/fb.png" alt="Facebook">
+            <img src="../labtest/images/insta.png" alt="Instagram">
+            <img src="../labtest/images/twitter.png" alt="Twitter">
+            <img src="../labtest/images/linkdin.png" alt="LinkedIn">
         </div>
       </div>
       <div class="footer-links">
@@ -942,9 +941,9 @@ text-align: left;
       </div>
       <div class="footer-contact">
           <h3><u>Contact info</u></h3>
-          <p><img src="../images/Phone call.png">+91-1234567890</p>
-          <p><img src="../images/mail.png">caregiver270@gmail.com</p>
-          <p><img src="../images/Phone call.png">+033-2569-3125</p>
+          <p><img src="../labtest/images/Phone call.png">+91-1234567890</p>
+          <p><img src="../labtest/images/mail.png">caregiver270@gmail.com</p>
+          <p><img src="../labtest/images/Phone call.png">+033-2569-3125</p>
           <button>Get Started</button>
       </div>
   </div>

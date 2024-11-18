@@ -6,6 +6,7 @@
     <title>Medicine | Elder Care</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
     <header>
@@ -18,7 +19,7 @@
 
             <div class="navigation cont">
               <ul class="first-ul ">
-                <li><a href="../index.php">Home</a></li>
+                <li><a href="../main.php">Home</a></li>
                 <li><a href="../aboutus.php">About Us</a></li>
                 <li class="nav2">
                   <div class="wrap">
@@ -61,8 +62,7 @@
               </div>
               </a>
 
-              <button>Sign Up</button>
-              <button>Login</button>
+              <a href="../sign-up/login.php"><button><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
               <div class="hamburger">
                 <img src="../assets/menu.png" alt="hamburger" />
                 <img class="none" src="../assets/categories.png" alt="" />

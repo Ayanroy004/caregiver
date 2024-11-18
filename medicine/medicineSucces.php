@@ -6,6 +6,7 @@
     <title>CareGiver Project</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
   <header>
@@ -18,7 +19,7 @@
 
             <div class="navigation cont">
               <ul class="first-ul ">
-                <li><a href="../index.php">Home</a></li>
+                <li><a href="../main.php">Home</a></li>
                 <li><a href="../aboutus.php">About Us</a></li>
                 <li class="nav2">
                   <div class="wrap">
@@ -53,34 +54,7 @@
             </div>
 
             <div class="log-sign-btn-wrapper">
-              <div class="user">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="23"
-                  height="27"
-                  viewBox="0 0 23 27"
-                  fill="none"
-                >
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="#B3B3B3"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="white"
-                    stroke-opacity="0.2"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-
-              <button>Sign Up</button>
-              <button>Login</button>
+            <a href="../sign-up/login.php"><button><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
               <div class="hamburger">
                 <img src="../assets/menu.png" alt="hamburger" />
                 <img class="none" src="../assets/categories.png" alt="" />
@@ -102,7 +76,7 @@
           Have a good Day !</h3>
       </div>
       <div class="btn">
-        <a href="../index.php"><button>Home</button></a> 
+        <a href="../main.php"><button>Home</button></a> 
       </div>
       </section>
 

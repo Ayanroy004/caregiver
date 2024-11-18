@@ -238,34 +238,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="../images/caregiver logo.png">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Service ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Doctor</a></li>
-                        <li><a href="#">Nurse</a></li>
-                        <li><a href="#">Physiotherapist</a></li>
-                        <li><a href="#">Lab Test</a></li>
-                        <li><a href="#">Care Taker</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-            <div class="auth-buttons">
-                <img src="../images/user.png">
-                <!--<i class="fas fa-user-circle user-icon"></i>-->
-                <button class="sign-up">Sign Up</button>
-                <button class="login"><u>Login</u></button>
-            </div>
-        </nav>
-    </header>
+    
     <main>
         <div class="login-container">
             <h2>Welcome To CareGiver</h2>
@@ -277,7 +250,6 @@
                 <label for="password">Password</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-                    <i class="fas fa-eye"></i>
                 </div>
                 <button type="submit" name="login" class="login-btn">Login</button>
             </form>
@@ -318,11 +290,12 @@ $dbname = "caregiver";
             if(md5($pass) == $encpassword){
                 echo "correct";
                 
-                echo "<script> location.href='../index.php'; </script>";
+                echo "<script> location.href='../main.php'; </script>";
                 exit;
             }
             else{
                 echo "not";
+                echo "<script>alert(' Passwords is Wrong ');</script>";
                 echo "<script> location.href='login.php'; </script>";
                 exit;
             }

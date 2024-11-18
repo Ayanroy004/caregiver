@@ -1,43 +1,38 @@
 <?php
-include "config.php";
 
-// SQL query to delete all data from the orders table
-$sql = "DELETE FROM orders";
+$doctor="./doctor/index.php";
+$lab_test="./labtest/index.php";
+$nurse="./Nurse/index.php";
+$careTaker="./caretaker/careTakerBook.php";
+$physiotheraphy="./phsio/";
+$medicine="./medicine/medicine.php";
 
-if ($conn->query($sql) === TRUE) {
-    
-} else {
-    echo "Error deleting orders: " . $conn->error;
-}
-
-$conn->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Medicine | Home Care</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <title>CareGiver Home</title>
+    <link rel="stylesheet" href="./css/caretaker.css" />
+    <!-- <link rel="stylesheet" href="./css/style.css" /> -->
+    <!-- <link rel="stylesheet" href="./css/responsive.css" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
-  <header>
+    <header>
       <nav>
         <div class="custom-container">
           <div class="wrapper">
             <div class="logo">
-              <a href="#"><img src="../assets/logo.png" alt="Company Logo" /></a>
+              <a href="#"><img src="./assets/logo.png" alt="Company Logo" /></a>
             </div>
 
             <div class="navigation cont">
-              <ul class="first-ul ">
-                <li><a href="../main.php">Home</a></li>
-                <li><a href="../aboutus.php">About Us</a></li>
+              <ul class="first-ul">
+                <li><a href="#">Home</a></li>
+                <li><a href="./aboutus.php">About Us</a></li>
                 <li class="nav2">
                   <div class="wrap">
                     <p class="service">Services</p>
@@ -54,15 +49,20 @@ $conn->close();
                       </svg>
                     </div>
                   </div>
-
                   <ul class="effect menu-toggle">
-                    <li><a href="../doctor/index.php">Doctor</a></li>
-                    <li><a href="../Nurse/index.php">Nurse</a></li>
-                    <li><a href="../caretaker/careTakerBook.php">Care Taker</a></li>
-                    <li><a href="../phsio/CareGiver application">Physiotherapist</a></li>
-                    <li><a href="../labtest/index.php">Lab Test</a></li>
+                    <li><a href="<?php echo $doctor ?>">Doctor</a></li>
+                    <li><a href="<?php echo $nurse ?>">Nurse</a></li>
+                    <li><a href="<?php echo $careTaker ?>">Care Taker</a></li>
                     <li>
-                      <a href="../medicine/medicine.php" target="_blank">Medicine</a>
+                      <a href="<?php echo $physiotheraphy ?>"
+                        >Physiotherapist</a
+                      >
+                    </li>
+                    <li><a href="<?php echo $lab_test ?>">Lab Test</a></li>
+                    <li>
+                      <a href="<?php echo $medicine ?>" target="_blank"
+                        >Medicine</a
+                      >
                     </li>
                   </ul>
                 </li>
@@ -71,10 +71,12 @@ $conn->close();
             </div>
 
             <div class="log-sign-btn-wrapper">
-            <a href="../sign-up/login.php"><button><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
+              
+
+              <a href="./sign-up/login.php"><button><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>
               <div class="hamburger">
-                <img src="../assets/menu.png" alt="hamburger" />
-                <img class="none" src="../assets/categories.png" alt="" />
+                <img src="./assets/menu.png" alt="hamburger" />
+                <img class="none" src="./assets/categories.png" alt="" />
               </div>
             </div>
           </div>
@@ -82,99 +84,136 @@ $conn->close();
       </nav>
     </header>
 
-    <section class="progress divider">
-      <div class="custom-container">
-        <div class="progress-wrap">
-          <p class="active">Product Cart</p>
-          <div class="active-line"></div>
-          <p class="active">Checkout</p>
-          <div class="active-line"></div>
-          <p>Payment</p>
+    <main>
+      <div class="all">
+        
+        <div class="one">
+          <img src="./assets/Banner (1).png" alt="banner" />
+        </div>
+
+        <div class="two our">
+          <div><h1>Our Services</h1></div>
+          <div class="allcards">
+            <div class="cards">
+              <div class="cards-image1">
+                <img src="./assets/doctor card.png" alt="" />
+              </div>
+              <p>Doctor</p>
+            </div>
+
+            <div class="cards">
+              <div class="cards-image1">
+                <img src="./assets/nurse card.png" alt="" />
+              </div>
+              <p>Nurse</p>
+            </div>
+
+            <div class="cards">
+              <div class="cards-image1">
+                <img src="./assets/physiotherapy card.png" alt="pic" />
+              </div>
+              <p>Lab Test</p>
+            </div>
+          </div>
+          <div class="viewall-btn">
+            <a href="./medicine/services.php"><button>View all</button></a>
+            
+          </div>
+        </div>
+
+        <div class="three" style="padding-top: 25px">
+          <h1>Why Choose Caregiver</h1>
+          <div class="hand-tem">
+            <div class="handshake">
+              <img src="./assets/handshake.png" alt="" />
+            </div>
+
+            <div class="all-template">
+              <div class="template">
+                <div class="template-pic">
+                  <img src="./assets/support-card1.png" alt="pic" />
+                </div>
+                <div><p>Your caring companion, 24/7</p></div>
+              </div>
+
+              <div class="template">
+                <div class="template-pic">
+                  <img src="./assets/support-card2.png" alt="pic" />
+                </div>
+                <div><p>Bringing care to your fingertips</p></div>
+              </div>
+
+              <div class="template">
+                <div class="template-pic">
+                  <img src="./assets/support-card3.png" alt="pic" />
+                </div>
+                <div><p>Your own care partner</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="four">
+          <h1>Our Client Reviews</h1>
+          <div class="all-customercart">
+            <div class="customer-cart">
+              <div class="rating">
+                <img src="./assets/rating1.png" alt="randompic" />
+              </div>
+              <div class="text">
+                <p>
+                  “So easy to use and very helpful!” “As a first-time caregiver,
+                  I was overwhelmed. This app makes it simple to track
+                  medications, appointments, and even my own self-care. It’s
+                  like having a support system in my pocket.”
+                </p>
+              </div>
+
+              <div class="avatar">
+                <img src="./assets/Avatar Block.png" alt="" />
+              </div>
+            </div>
+
+            <div class="customer-cart">
+              <div class="rating">
+                <img src="./assets/rating2.png" alt="randompic" />
+              </div>
+              <div class="text">
+                <p>
+                  “A true lifesaver!” “This app has transformed the way I manage
+                  care for my parents. The reminders and scheduling tools keep
+                  me organized, and the support resources have been invaluable.
+                  Highly recommended!🥰”
+                </p>
+              </div>
+
+              <div class="avatar">
+                <img src="./assets/Avatar  (3).png" alt="randompic" />
+              </div>
+            </div>
+
+            <div class="customer-cart">
+              <div class="rating">
+                <img src="./assets/rating3.png" alt="randompic" />
+              </div>
+              <div class="text">
+                <p>
+                  “Great app for family caregivers❤️!” “I love that I can
+                  coordinate with my siblings in real time through this app. We
+                  can all stay updated on our mom’s care, even from different
+                  cities. Communication has never been easier!”
+                </p>
+              </div>
+
+              <div class="avatar">
+                <img src="./assets/Avatar  (2).png" alt="" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-
-    <section class="sec-gap divider product-cart ">
-        <div class="custom-container">
-            <div class="row">
-                <div class="col-50">
-                    <div class="left-sec">
-                        <div class="payment-form">
-                            <!-- UPI Section -->
-                            <div class="payment-option">
-                                <div class="wrap">
-                                    <input type="radio" id="upi" name="payment" onclick="togglePaymentOption()" />
-                                    <label for="upi">UPI</label>
-                                </div>
-                                <div class="input-group" id="upi-input-group">
-                                    <label for="upi-id">Enter UPI ID</label>
-                                    <input type="text" id="upi-id" placeholder="john.doe@hdfcbank" />
-                                </div>
-                            </div>
-                          
-                            <!-- Card Section -->
-                            <div class="payment-option">
-                                <div class="wrap">
-                                    <input type="radio" id="card" name="payment" onclick="togglePaymentOption()" />
-                                    <label for="card">Card</label>
-                                </div>
-                                <div class="input-group" id="card-input-group">
-                                    <label for="card-number">Enter Your Card Number</label>
-                                    <input type="text" id="card-number" placeholder="4256-1283-0025" />
-                                </div>
-                                <div class="input-group" id="card-details-group">
-                                    <label for="expiry">Valid Date :</label>
-                                    <div class="exp-card">
-                                        <input type="text" id="expiry-mm" placeholder="MM" />
-                                        <input type="text" id="expiry-yy" placeholder="YY" />
-                                    </div>
-                                    <div class="card-cvv">
-                                        <input type="text" id="cvv" placeholder="CVV" />
-                                    </div>
-                                </div>
-                            </div>
-                          
-                            <!-- Cash on Delivery Section -->
-                            <div class="payment-option">
-                                <div class="wrap">
-                                    <input type="radio" id="cod" name="payment" onclick="togglePaymentOption()" />
-                                    <label for="cod">Cash on Delivery</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="btn">
-                            <button id="pay-button" onclick="payAndDeleteOrders()">Pay 7,839</button>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        function togglePaymentOption() {
-            document.getElementById('pay-button').disabled = false;
-        }
-
-        function payAndDeleteOrders() {
-            fetch('delete_orders.php', {
-                method: 'POST',
-            })
-            .then(response => response.text())
-            .then(result => {
-                console.log('Orders deleted:', result);
-                window.location.href = './medicineSucces.php';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
-
-
-<div class="footer-part">
+    </main>
+    <div class="footer-part">
       <footer>
         <div class="custom-container">
           <div class="row">
@@ -182,7 +221,7 @@ $conn->close();
               <div class="left-sec">
                 <a href="#">
                   <div class="logo-wrap">
-                    <img src="../assets/logo.png" alt="company logo" />
+                    <img src="./assets/logo.png" alt="company logo" />
                   </div>
                 </a>
                 <p>
@@ -286,11 +325,11 @@ $conn->close();
                   <h5>Quick Links</h5>
                   <ul>
                     <li>
-                      <a href="../aboutus.php" target="_blank" target="_blank">About Us</a>
+                      <a href="./aboutus.php" target="_blank" target="_blank">About Us</a>
                     </li>
-                    <li><a href="../doctor/privacyPolicy.php" target="_blank">Privacy Policy</a></li>
-                    <li><a href="../doctor/termscondition.php" target="_blank">Terms & Condition </a></li>
-                    <li><a href="../medicine/services.php" target="_blank">Services</a></li>
+                    <li><a href="./doctor/privacyPolicy.php" target="_blank">Privacy Policy</a></li>
+                    <li><a href="./doctor/termscondition.php" target="_blank">Terms & Condition </a></li>
+                    <li><a href="./medicine/services.php" target="_blank">Services</a></li>
                   </ul>
                 </div>
 
@@ -298,21 +337,23 @@ $conn->close();
                   <h5>CareGiver Services</h5>
                   <ul>
                     <li>
-                      <a href="../doctor/index.php" target="_blank" target="_blank">Doctor</a>
+                      <a href="./doctor/index.php" target="_blank" target="_blank">Doctor</a>
                     </li>
                     <li>
-                      <a href="../Nurse/index.php" target="_blank" target="_blank">Nurse</a>
+                      <a href="./Nurse/index.php" target="_blank" target="_blank">Nurse</a>
                     </li>
                     <li>
-                      <a href="../phsio/CareGiver application" target="_blank" target="_blank"
+                      <a href="./phsio/CareGiver application" target="_blank" target="_blank"
                         >Physiotherapist
                       </a>
                     </li>
                     <li>
-                      <a href="../labtest/index.php" target="_blank" target="_blank">Lab test</a>
+                      <a href="./labtest/index.php" target="_blank" target="_blank">Lab test</a>
                     </li>
                     <li>
-                      <a href="../medicine/medicine.php" target="_blank">Medicine</a>
+                      <a href="./medicine/medicine.php" target="_blank"
+                        >Medicine</a
+                      >
                     </li>
                   </ul>
                 </div>
@@ -403,7 +444,6 @@ $conn->close();
         </div>
       </section>
     </div>
-
-    <script src="../script/index.js"></script>
+    <script src="./script/index.js"></script>
   </body>
 </html>

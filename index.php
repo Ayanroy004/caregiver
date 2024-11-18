@@ -1,11 +1,11 @@
 <?php
 
-$doctor="./doctor/index.php";
-$lab_test="./labtest/index.php";
-$nurse="./Nurse/index.php";
-$careTaker="./caretaker/careTakerBook.php";
-$physiotheraphy="./phsio/";
-$medicine="./medicine/medicine.php";
+$doctor="./sign-up/sign-up.php";
+$lab_test="./sign-up/sign-up.php";
+$nurse="./sign-up/sign-up.php";
+$careTaker="./sign-up/sign-up.php";
+$physiotheraphy="./sign-up/sign-up.php";
+$medicine="./sign-up/sign-up.php";
 
 ?>
 
@@ -31,7 +31,7 @@ $medicine="./medicine/medicine.php";
             <div class="navigation cont">
               <ul class="first-ul">
                 <li><a href="#">Home</a></li>
-                <li><a href="./aboutus.php">About Us</a></li>
+                <li><a href="./sign-up/sign-up.php">About Us</a></li>
                 <li class="nav2">
                   <div class="wrap">
                     <p class="service">Services</p>
@@ -71,33 +71,10 @@ $medicine="./medicine/medicine.php";
             </div>
 
             <div class="log-sign-btn-wrapper">
-              <div class="user">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="23"
-                  height="27"
-                  viewBox="0 0 23 27"
-                  fill="none"
-                >
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="#B3B3B3"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M21.8334 25.125V22.5417C21.8334 21.1714 21.2891 19.8572 20.3201 18.8883C19.3512 17.9193 18.037 17.375 16.6667 17.375H6.33342C4.96313 17.375 3.64897 17.9193 2.68003 18.8883C1.71109 19.8572 1.16675 21.1714 1.16675 22.5417V25.125M16.6667 7.04167C16.6667 9.89514 14.3536 12.2083 11.5001 12.2083C8.64661 12.2083 6.33342 9.89514 6.33342 7.04167C6.33342 4.1882 8.64661 1.875 11.5001 1.875C14.3536 1.875 16.6667 4.1882 16.6667 7.04167Z"
-                    stroke="white"
-                    stroke-opacity="0.2"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+              
 
               <a href="./sign-up/sign-up.php"> <button>Sign Up</button> </a>
+
               <a href="./sign-up/login.php"><button>Login</button></a>
               <div class="hamburger">
                 <img src="./assets/menu.png" alt="hamburger" />
@@ -141,7 +118,7 @@ $medicine="./medicine/medicine.php";
             </div>
           </div>
           <div class="viewall-btn">
-            <a href="./medicine/services.php"><button>View all</button></a>
+            <a href="./sign-up/sign-up.php"><button>View all</button></a>
             
           </div>
         </div>
